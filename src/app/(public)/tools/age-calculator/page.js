@@ -1,6 +1,6 @@
-import AgeCalculator from "@/app/component/AgeCalculator";
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
+import AgeCalculator from "@/app/_component/AgeCalculator";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
 import { url } from "@/app/utils/common-text";
 import Link from "next/link";
 

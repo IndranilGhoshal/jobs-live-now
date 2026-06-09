@@ -1,8 +1,10 @@
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
 import { slugToTitle } from "@/app/utils/common";
 import moment from "moment";
 import Link from "next/link";
+
+export const dynamic = "force-dynamic";
 
 // ================= CATEGORY TITLE =================
 const getQualificationTitle = (slug) => {
@@ -52,7 +54,7 @@ export default async function Page({ params }) {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-qualification`,
         {
             method: "POST",
-
+            cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
             },

@@ -1,5 +1,5 @@
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
 import { contactemailurl, title } from "@/app/utils/common-text";
 
 export const metadata = {

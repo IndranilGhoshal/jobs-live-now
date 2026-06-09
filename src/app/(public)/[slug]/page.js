@@ -1,4 +1,5 @@
-import JobDetailsClient from "@/app/component/JobDetailsClient";
+import JobDetailsClient from "@/app/_component/JobDetailsClient";
+export const dynamic = "force-dynamic";
 // ================= SEO =================
 export async function generateMetadata({ params }) {
 
@@ -10,7 +11,7 @@ export async function generateMetadata({ params }) {
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
             {
                 method: "POST",
-
+                cache: "no-store",
                 headers: {
                     "Content-Type": "application/json",
                 },

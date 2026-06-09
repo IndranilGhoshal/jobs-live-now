@@ -1,6 +1,6 @@
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
-import TypingTestClient from "@/app/component/TypingTestClient";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
+import TypingTestClient from "@/app/_component/TypingTestClient";
 import { url } from "@/app/utils/common-text";
 import Link from "next/link";
 

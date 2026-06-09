@@ -1,6 +1,6 @@
-import BiodataMaker from "@/app/component/BiodataMaker";
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
+import BiodataMaker from "@/app/_component/BiodataMaker";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
 import { url } from "@/app/utils/common-text";
 import Link from "next/link";
 

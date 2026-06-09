@@ -2,7 +2,7 @@
 
 //Texts
 export const title = 'Jobs Live Now';
-export const url = 'https://jobslivenow.in';
+export const url = 'http://localhost:3000';
 export const contactemailurl = 'support@jobslivenow.in';
 
 
@@ -17,7 +17,7 @@ export const year = new Date().getFullYear();
 
 
 //robots url
-export const sitemapurl = "https://jobslivenow.in/sitemap.xml"
+export const sitemapurl = "http://localhost:3000/sitemap.xml"
 
 
 export const wpgrouplink = "https://chat.whatsapp.com/Id17tCunMrN5VX4tVxCUlN?s=cl&p=i&mlu=0&amv=0"

@@ -1,7 +1,7 @@
 "use client";
 
-import MultipleAutoCompleteSearch from "@/app/component/MultipleAutoCompleteSearch";
-import SingleAutoCompleteSearch from "@/app/component/SingleAutoCompleteSearch";
+import MultipleAutoCompleteSearch from "@/app/_component/MultipleAutoCompleteSearch";
+import SingleAutoCompleteSearch from "@/app/_component/SingleAutoCompleteSearch";
 
 import dynamic from "next/dynamic";
 
@@ -16,7 +16,7 @@ import {
     Draggable
 } from "@hello-pangea/dnd";
 
-const Editor = dynamic(() => import("@/app/component/Editor"), {
+const Editor = dynamic(() => import("@/app/_component/Editor"), {
     ssr: false
 });
 

@@ -1,5 +1,5 @@
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
 import { title } from "@/app/utils/common-text";
 import Link from "next/link";
 

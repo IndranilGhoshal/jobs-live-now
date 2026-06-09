@@ -1,7 +1,9 @@
 import Link from "next/link";
-import SocialLinks from "../component/SocialLinks";
-import SocialJoinLink from "../component/SocialJoinLink";
+import SocialLinks from "../_component/SocialLinks";
+import SocialJoinLink from "../_component/SocialJoinLink";
 import { title, url, year } from "../utils/common-text";
+
+export const dynamic = "force-dynamic";
 
 // ================= SEO =================
 export const metadata = {
@@ -55,18 +57,14 @@ export default async function Page() {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-index`,
         {
             method: "POST",
-
+            cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
             },
 
             body: JSON.stringify({
                 list: true,
-            }),
-
-            next: {
-                revalidate: 300,
-            },
+            })
         }
     );
 
@@ -126,8 +124,8 @@ export default async function Page() {
                     {
                         title == "Admission Form" && "🎓"
                     }
-                     
-                {" "+title}</h5>
+
+                    {" " + title}</h5>
 
                 {
                     data?.length > 0 ? (
@@ -248,7 +246,7 @@ export default async function Page() {
                         <div className="sidebar quck-lnk">
                             <h6>Online Free Tools</h6>
                             <ul>
-                                
+
                                 <li><Link href={`/tools/age-calculator`}>🎂 Age Calculator</Link></li>
                                 <li><Link href={`/tools/image-resizer`}>🖼️ Image Resizer</Link></li>
                                 <li><Link href={`/tools/biodata-maker`}>📄 Biodata Maker</Link></li>

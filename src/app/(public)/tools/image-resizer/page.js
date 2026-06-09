@@ -1,6 +1,6 @@
-import ImageResizer from "@/app/component/ImageResizer";
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
+import ImageResizer from "@/app/_component/ImageResizer";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
 import { url } from "@/app/utils/common-text";
 import Link from "next/link";
 

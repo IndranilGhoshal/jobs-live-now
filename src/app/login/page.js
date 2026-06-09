@@ -1,8 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Header from '../component/header';
-import Footer from '../component/Footer';
+import Header from '../_component/header';
+import Footer from '../_component/Footer';
 import "../../../public/css/style.css";
 
 export default function page() {

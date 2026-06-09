@@ -1,5 +1,5 @@
 "use client";
-import UsePagination from "@/app/component/UsePagination";
+import UsePagination from "@/app/_component/UsePagination";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";

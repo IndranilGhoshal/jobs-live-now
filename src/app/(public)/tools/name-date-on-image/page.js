@@ -1,6 +1,6 @@
-import PhotoNameJoiner from "@/app/component/PhotoNameJoiner";
-import SocialJoinLink from "@/app/component/SocialJoinLink";
-import SocialLinks from "@/app/component/SocialLinks";
+import PhotoNameJoiner from "@/app/_component/PhotoNameJoiner";
+import SocialJoinLink from "@/app/_component/SocialJoinLink";
+import SocialLinks from "@/app/_component/SocialLinks";
 import { url } from "@/app/utils/common-text";
 import Link from "next/link";
 

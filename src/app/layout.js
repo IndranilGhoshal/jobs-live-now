@@ -2,8 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { LoaderProvider } from "./_context/LoaderContext";
-import RouteLoader from "./component/RouteLoader";
-import NoInternet from "./component/NoInternet";
+import RouteLoader from "./_component/RouteLoader";
+import NoInternet from "./_component/NoInternet";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
