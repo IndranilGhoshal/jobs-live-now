@@ -224,7 +224,7 @@ h2.top-sub-bar {
 
 .idx-pg .card-box li {
     white-space: nowrap;
-    width: 300px;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 800;
