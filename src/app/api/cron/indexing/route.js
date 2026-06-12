@@ -1,7 +1,19 @@
-import { notifySearchEngines } from "@/app/utils/indexingBooster";
+let lastRunDate = null;
 
 export async function GET() {
     try {
+        const today = new Date().toISOString().split("T")[0];
+
+        // 🚀 already ran today → skip
+        if (lastRunDate === today) {
+            return Response.json({
+                success: true,
+                message: "Already ran today",
+            });
+        }
+
+        lastRunDate = today;
+
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
             {
@@ -19,12 +31,15 @@ export async function GET() {
 
         for (const job of jobs.slice(0, 10)) {
             const url = `${process.env.NEXT_PUBLIC_BASE_URL}/${job.slug}`;
-            await notifySearchEngines(url);
+
+            await fetch(
+                `https://www.google.com/ping?sitemap=${encodeURIComponent(url)}`
+            );
         }
 
         return Response.json({
             success: true,
-            message: "Cron indexing done",
+            message: "Daily cron executed once",
         });
     } catch (error) {
         return Response.json(
