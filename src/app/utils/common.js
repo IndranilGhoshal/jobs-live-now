@@ -27,6 +27,22 @@ export const getLocalStorageData = (key) => {
     }
 }
 
+export const setSessionStorageData = (key, data) => {
+    try {
+        sessionStorage.setItem(key, JSON.stringify(data));
+    } catch (e) {
+        return null
+    }
+}
+
+export const getSessionStorageData = (key) => {
+    try {
+        return JSON.parse(sessionStorage.getItem(key))
+    } catch (e) {
+        return null
+    }
+}
+
 export const slugToTitle = (slug) => {
     try {
         return slug
@@ -49,3 +65,8 @@ export function countWords(text) {
     .filter(Boolean)
     .length;
 }
+
+
+export const formatNumber = (num) => {
+  return String(num).padStart(2, "0");
+};

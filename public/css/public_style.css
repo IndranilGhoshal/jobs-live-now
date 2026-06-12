@@ -180,6 +180,11 @@ h2.top-sub-bar {
     font-size: 14px;
 }
 
+.job-dtl header{
+    color: #0d47a1;
+    text-align: center;
+}
+
 .job-dtl .card-box li {
     padding: 10px;
     border-bottom: 1px solid #eee;
@@ -187,10 +192,11 @@ h2.top-sub-bar {
     cursor: pointer;
     color: #0d47a1;
     font-size: 16px;
+    font-weight: 800;
 }
 
 
-.job-dtl .card-box li {
+.ext-lst .card-box li {
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 100%;
@@ -229,6 +235,7 @@ h2.top-sub-bar {
     padding-left: 15px;
     color: #0072ff;
     font-weight: 500;
+    width: 100%;
 }
 
 .job-dttls .dtl-tlt.my-2 {
@@ -432,7 +439,7 @@ h2.top-sub-bar {
 .logo-img {
     border-radius: 10px;
     width: 70%;
-    height: auto;
+    height: auto !important;
 }
 
 /* Better alignment */
@@ -581,6 +588,7 @@ h2.top-sub-bar {
     background: transparent;
     padding-left: 10px;
     color: black;
+    width: 100%;
 }
 
 .tab-dle-tlt {
@@ -3252,13 +3260,9 @@ figure.table th {
 
     .single-line-ellipsis {
         white-space: nowrap;
-        /* Prevents text from wrapping to a new line */
         overflow: hidden;
-        /* Hides text that spills out of the box */
         text-overflow: ellipsis;
-        /* Adds '...' to the end of the visible text */
-        width: 170px;
-        /* A fixed or maximum width is required */
+        width: 150px;
     }
 
     .job-dtl .skeleton-title {
@@ -3431,6 +3435,9 @@ figure.table th {
     }
 }
 
+.topdvi{
+    display: flex;
+}
 
 
 @media (max-width:768px) {
@@ -3446,7 +3453,7 @@ figure.table th {
 
     .idx-pg .card-box li {
         white-space: nowrap;
-        width: 350px;
+        width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
     }

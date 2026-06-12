@@ -15,6 +15,7 @@ import {
     Droppable,
     Draggable
 } from "@hello-pangea/dnd";
+import { adminpath } from "@/app/utils/common-text";
 
 const Editor = dynamic(() => import("@/app/_component/Editor"), {
     ssr: false
@@ -337,7 +338,7 @@ export default function Page() {
             if (data.success) {
                 toast.success(data.message);
                 setTimeout(() => {
-                    router.push("/admin/categories");
+                    router.push(adminpath + "/categories");
                 }, 1000);
             } else {
                 toast.error(data.message);
@@ -432,7 +433,7 @@ export default function Page() {
                                                         )}
 
                                                         {/* ACTION */}
-                                                        <div className="field-actions">
+                                                        <div className={`${item.isExtra ? "field-actions-extra" : "field-actions"}`}>
 
                                                             <button
                                                                 type="button"
@@ -441,17 +442,13 @@ export default function Page() {
                                                                 +
                                                             </button>
 
-                                                            {item.isExtra && (
-
-                                                                <button
-                                                                    type="button"
-                                                                    className="dlt-ext"
-                                                                    onClick={() => removeField(i)}
-                                                                >
-                                                                    x
-                                                                </button>
-
-                                                            )}
+                                                            <button
+                                                                type="button"
+                                                                className="dlt-ext"
+                                                                onClick={() => removeField(i)}
+                                                            >
+                                                                x
+                                                            </button>
 
                                                         </div>
 

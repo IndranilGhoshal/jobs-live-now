@@ -27,13 +27,13 @@ export const metadata = {
   ],
 
   alternates: {
-    canonical: url+"/top-online-form",
+    canonical: url + "/top-online-form",
   },
 
   openGraph: {
     title: "Top Online Form",
     description: "Latest Government Job Online Forms and Recruitment Updates.",
-    url: url+"/top-online-form",
+    url: url + "/top-online-form",
     siteName: title,
     type: "website",
   },
@@ -46,28 +46,27 @@ export const metadata = {
 };
 
 export default async function page() {
-  // ================= FETCH =================
+  let response = [];
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
+      {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
-    {
-      method: "POST",
-      cache: "no-store",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        list: true,
-      }),
-
-      next: {
-        revalidate: 300,
-      },
-    }
-  );
-
-  const response = await res.json();
+        body: JSON.stringify({
+          list: true,
+        }),
+      }
+    );
+    response = await res.json();
+  } catch (error) {
+    console.error("API Error:", error);
+    response = [];
+  }
 
   const topOnlineForm =
     response?.data?.topOnlineForm || [];
@@ -95,11 +94,16 @@ export default async function page() {
     if (!applicationDateField)
       return "";
 
-    return moment(
-      applicationDateField?.value?.end
-    ).format("MMM Do YYYY");
-
+    let lastdate = moment(applicationDateField?.value?.end).format("MMM Do YYYY")
+    const jobExpired = moment().isAfter(moment(applicationDateField?.value?.end, "YYYY-MM-DD"),"day");
+    if (jobExpired) {
+      return "Job Application Expired";
+    } else {
+      return lastdate;
+    }
   };
+
+
 
 
   return (
@@ -107,10 +111,9 @@ export default async function page() {
       <div className="container job-dtl main">
 
         <header>
-          <h1>Latest Jobs {year} - {title} Updates</h1>
+          <h1>Latest Jobs {year}</h1>
           <p>
-            Get latest Job Result, job notifications, admit cards,
-            answer keys and online forms in India. Updated daily.
+            Get latest Result, Admit Cards, Answer Keys and Online Forms in India. Updated daily.
           </p>
         </header>
 
@@ -145,7 +148,7 @@ export default async function page() {
                       >
                         <Link href={`/${item.slug}`}>
                           <>
-                            <div>{i + 1}. {item.name}</div>
+                            <div className="topdvi">{i + 1}.<div className="mx-1">{item.name}</div></div>
                             <p>Last Date: {getLastDate(item.fields)}</p>
                           </>
                         </Link>
@@ -172,7 +175,7 @@ export default async function page() {
           </ul>
         </div>
 
-        <div className="row mt-3">
+        <div className="row ext-lst mt-3">
 
           <div className="col-md-4">
 
@@ -190,6 +193,7 @@ export default async function page() {
                         admitCardData.map((item, i) => (
                           <li
                             key={i}
+                            data-bs-toggle="tooltip" data-bs-placement="top" title={item.name}
                           >
                             <Link href={`/${item.slug}`}>
                               <>
@@ -253,6 +257,7 @@ export default async function page() {
                         resultData.map((item, i) => (
                           <li
                             key={i}
+                            data-bs-toggle="tooltip" data-bs-placement="top" title={item.name}
                           >
                             <Link href={`/${item.slug}`}>
                               <>
@@ -315,6 +320,7 @@ export default async function page() {
                         answerKeyData.map((item, i) => (
                           <li
                             key={i}
+                            data-bs-toggle="tooltip" data-bs-placement="top" title={item.name}
                           >
                             <Link href={`/${item.slug}`}>
                               <>

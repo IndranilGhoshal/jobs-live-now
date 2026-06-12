@@ -12,7 +12,8 @@ import {
     Droppable,
     Draggable
 } from "@hello-pangea/dnd";
-import { getLocalStorageData, slugify } from "@/app/utils/common";
+import { getSessionStorageData, slugify } from "@/app/utils/common";
+import { adminpath } from "@/app/utils/common-text";
 
 const Editor = dynamic(() => import("../../_component/Editor"), {
     ssr: false
@@ -218,13 +219,9 @@ export default function Page() {
                     slug: slugify(name),
                     category: category,
                     status: "0",
-                    author:  getLocalStorageData('admin')?.name ? getLocalStorageData('admin')?.name : "Admin",
+                    author:  getSessionStorageData('admin')?.name ? getSessionStorageData('admin')?.name : "Admin",
                     fields: field
                 }
-
-                console.log("obj",obj);
-                
-
                 const res = await fetch("/api/categories", {
                     method: "POST",
                     headers: {
@@ -237,7 +234,7 @@ export default function Page() {
 
                 if (data.success) {
                     toast.success(data.message);
-                    router.push("/admin/categories")
+                    router.push(adminpath+"/categories")
                 } else {
                     toast.error(data.message);
                 }

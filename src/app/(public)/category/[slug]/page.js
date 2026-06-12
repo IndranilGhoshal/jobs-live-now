@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
 
         title: `${title} ${year} | Latest ${title} Updates`,
 
-        description:`Get latest ${title} updates, notifications, admit cards, results and important government exam information.`,
+        description: `Get latest ${title} updates, notifications, admit cards, results and important government exam information.`,
 
         alternates: {
             canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/category/${slug}`,
@@ -49,23 +49,29 @@ export default async function Page({ params }) {
         category: slugToTitle(slug),
     }
 
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-category`,
-        {
-            method: "POST",
-            cache: "no-store",
-            headers: {
-                "Content-Type": "application/json",
-            },
+    let data = [];
 
-            body: JSON.stringify(obj),
+    try {
 
-            cache: "no-store",
-        }
-    );
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-category`,
+            {
+                method: "POST",
+                cache: "no-store",
+                headers: {
+                    "Content-Type": "application/json",
+                },
 
-    const data = await res.json();
+                body: JSON.stringify(obj),
 
+                cache: "no-store",
+            }
+        );
+        data = await res.json();
+    } catch (error) {
+        console.error("API Error:", error);
+        data = [];
+    }
 
 
     const jobs = data?.data || [];
@@ -85,9 +91,7 @@ export default async function Page({ params }) {
                 {/* ================= DESCRIPTION ================= */}
                 <p className="category-desc">
 
-                    Get all latest {title} updates including
-                    government jobs, notifications, important dates,
-                    admit cards and official links.
+                    Get {title} updates including official links.
 
                 </p>
             </header>
@@ -124,7 +128,9 @@ export default async function Page({ params }) {
                                             <Link
                                                 href={`/${item.slug}`}
                                             >
-                                                {i + 1}. {item.name}
+                                                <>
+                                                    <div className="topdvi">{i + 1}.<div className="mx-1">{item.name}</div></div>
+                                                </>
                                             </Link>
 
                                         </li>

@@ -52,23 +52,28 @@ export const metadata = {
 
 export default async function Page() {
 
-    // ================= FETCH HOME DATA =================
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-index`,
-        {
-            method: "POST",
-            cache: "no-store",
-            headers: {
-                "Content-Type": "application/json",
-            },
+    let response = [];
 
-            body: JSON.stringify({
-                list: true,
-            })
-        }
-    );
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-index`,
+            {
+                method: "POST",
+                cache: "no-store",
+                headers: {
+                    "Content-Type": "application/json",
+                },
 
-    const response = await res.json();
+                body: JSON.stringify({
+                    list: true,
+                })
+            }
+        );
+        response = await res.json();
+    } catch (error) {
+        console.error("API Error:", error);
+        response = [];
+    }
 
     const data = response?.data || {};
 

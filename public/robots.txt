@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin-x9k2m-secure

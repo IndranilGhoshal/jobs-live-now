@@ -1,114 +1,175 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Header from '../_component/header';
-import Footer from '../_component/Footer';
+import Header from "../_component/header";
+import Footer from "../_component/Footer";
 import "../../../public/css/style.css";
+import toast, { Toaster } from "react-hot-toast";
+import { adminpath } from "../utils/common-text";
 
-export default function page() {
+export default function LoginPage() {
     const router = useRouter();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
+    const [form, setForm] = useState({
+        email: "",
+        password: "",
+    });
+
     const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
 
+    // Check login status
     useEffect(() => {
-        const token = localStorage.getItem("token");
-
-        if (token) {
-            router.push("/admin/dashboard");
+        async function checkAuth() {
+            try {
+                const res = await fetch("/api/admin/me", {
+                    credentials: "include",
+                    cache: "no-store",
+                });
+                const data = await res.json();
+                if (data?.success && data?.status == "302") {
+                    router.replace(adminpath+"/dashboard");
+                }
+            } catch (error) {
+                console.error(error);
+            }
         }
-    }, []);
 
-    // 🔐 LOGIN FUNCTION
+        checkAuth();
+    }, [router]);
+
+
+    const handleChange = (e) => {
+        setForm((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+
+        setErrorMsg("");
+    };
+
     async function login() {
-
-        if (!email || !password) {
-            setErrorMsg("Please fill all fields!");
+        setErrorMsg("");
+        if (!form.email.trim() || !form.password) {
+            setErrorMsg("Please fill all fields.");
             return;
         }
 
-        setErrorMsg("");
-        setLoading(true);
-
         try {
+            setLoading(true);
+
             const res = await fetch("/api/login", {
                 method: "POST",
-                body: JSON.stringify({ email, password })
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: form.email.trim().toLowerCase(),
+                    password: form.password,
+                }),
             });
 
             const data = await res.json();
 
             if (!res.ok) {
-                setErrorMsg(data.error);
-                setLoading(false);
+                toast.error(
+                    data.error || "Login failed."
+                );
                 return;
             }
+            router.replace(adminpath+"/dashboard");
+            router.refresh();
 
-            // ✅ Save token
-            localStorage.setItem("token", data.token);
-
-            // Redirect
-            router.push("/admin/dashboard");
-
-        } catch (err) {
-            setErrorMsg("Something went wrong!");
+        } catch (error) {
+            console.error(error);
+            toast.error(
+                "Server error. Please try again."
+            );
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     }
+
+    function handleKeyDown(e) {
+        if (e.key === "Enter") {
+            login();
+        }
+    }
+
     return (
         <>
             <Header />
 
             <div className="main">
                 <div className="login-dv">
-
                     <div className="login-card-box">
-                        <div className="login-card-box-header">Admin Login</div>
 
-                        {/* EMAIL */}
+                        <div className="login-card-box-header">
+                            Admin Login
+                        </div>
+
+                        {/* Email */}
                         <div className="input-group">
                             <input
                                 type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                name="email"
+                                autoComplete="email"
+                                value={form.email}
+                                onChange={handleChange}
+                                onKeyDown={handleKeyDown}
                                 required
                             />
                             <label>Email Address</label>
-                            <span className="input-icon">📧</span>
+                            <span className="input-icon">
+                                📧
+                            </span>
                         </div>
 
-                        {/* PASSWORD */}
+                        {/* Password */}
                         <div className="input-group mt-3">
                             <input
                                 type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                name="password"
+                                autoComplete="current-password"
+                                value={form.password}
+                                onChange={handleChange}
+                                onKeyDown={handleKeyDown}
                                 required
                             />
                             <label>Password</label>
-                            <span className="input-icon">🔒</span>
+                            <span className="input-icon">
+                                🔒
+                            </span>
                         </div>
 
-                        {/* ERROR */}
-                        {errorMsg && <div className="errorMsg">{errorMsg}</div>}
+                        {/* Error Message */}
+                        {errorMsg && (
+                            <div className="errorMsg text-center">
+                                {errorMsg}
+                            </div>
+                        )}
 
-                        {/* BUTTON */}
+                        {/* Button */}
                         <button
-                            className={`login-btn ${loading ? "loading" : ""}`}
+                            type="button"
+                            disabled={loading}
                             onClick={login}
+                            className={`login-btn ${loading ? "loading" : ""
+                                }`}
                         >
-                            {loading ? "Logging in..." : "🔐 Login"}
+                            {loading
+                                ? "Logging in..."
+                                : "🔐 Login"}
                         </button>
 
                     </div>
-
                 </div>
             </div>
 
             <Footer />
+            <Toaster position="top-right" reverseOrder={false} />
         </>
-    )
+    );
 }

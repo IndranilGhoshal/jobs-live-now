@@ -21,8 +21,8 @@ export const metadata = {
   metadataBase: new URL("https://www.joblivenow.in"),
 
   title: {
-    default: "Job Live Now - Sarkari Result, Govt Jobs, Admit Card 2026",
-    template: "%s",
+    default: "Jobs Live Now - Results, Govt Jobs Forms, Admit Card",
+    template: "%s || Jobs Live Now",
   },
 
   description:
