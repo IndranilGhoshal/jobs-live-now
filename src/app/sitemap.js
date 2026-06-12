@@ -4,54 +4,101 @@ import { connectionStr } from "./lib/db";
 
 export default async function sitemap() {
 
-    await mongoose.connect(connectionStr);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-    const jobs = await JobSchema.find().select("_id updatedAt");
+    // 🔥 fetch all slugs from API
+    const res = await fetch(
+        `${baseUrl}/api/public-job`,
+        {
+            method: "POST",
+            cache: "no-store",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                sitemap: true,
+            }),
+        }
+    );
 
-    const jobUrls = jobs.map((job) => ({
-        url: `https://jobslivenow.in/${job._id}`,
-        lastModified: job.updatedAt,
-    }));
+    const data = await res.json();
+
+    const jobs = data?.data || [];
+
+    const jobUrls = jobs.map((job) => {
+        return {
+            url: `${baseUrl}/${job.slug}`,
+            lastModified: new Date(),
+            changeFrequency: "daily",
+            priority: 0.8,
+        };
+    });
 
     return [
         {
-            url: "https://jobslivenow.in",
+            url: baseUrl,
+            lastModified: new Date(),
+            changeFrequency: "daily",
+            priority: 1.0,
+        },
+        {
+            url: baseUrl + "/top-online-form",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/top-online-form",
+            url: baseUrl + "/about-us",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/about-us",
+            url: baseUrl + "/contact-us",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/contact-us",
+            url: baseUrl + "/privacy-policy",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/privacy-policy",
+            url: baseUrl + "/disclaimer",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/disclaimer",
+            url: baseUrl + "/terms-and-conditions",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/terms-and-conditions",
+            url: baseUrl + "/site-map",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/site-map",
+            url: baseUrl + "/tools/age-calculator",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/tools/age-calculator",
+            url: baseUrl + "/tools/image-resizer",
             lastModified: new Date(),
         },
         {
-            url: "https://jobslivenow.in/tools/image-resizer",
+            url: baseUrl + "/tools/biodata-maker",
+            lastModified: new Date(),
+        },
+        {
+            url: baseUrl + "/tools/image-to-pdf",
+            lastModified: new Date(),
+        },
+        {
+            url: baseUrl + "/tools/typing-test",
+            lastModified: new Date(),
+        },
+        {
+            url: baseUrl + "/tools/image-signature-joiner",
+            lastModified: new Date(),
+        },
+        {
+            url: baseUrl + "/tools/name-date-on-image",
+            lastModified: new Date(),
+        },
+        {
+            url: baseUrl + "/tools/pdf-to-image",
             lastModified: new Date(),
         },
 

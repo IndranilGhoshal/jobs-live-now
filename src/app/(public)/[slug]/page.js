@@ -1,12 +1,26 @@
 import JobDetailsClient from "@/app/_component/JobDetailsClient";
+import { notifySearchEngines } from "@/app/utils/indexingBooster";
+import { generateJobSchema } from "@/app/utils/jobSchema";
+import { generateSEODescription } from "@/app/utils/seoDescription";
+import { generateJobKeywords } from "@/app/utils/seoKeywords";
+import { generateSEOTitle } from "@/app/utils/seoTitle";
+
 export const dynamic = "force-dynamic";
+
+
+// ================= VIEWPORT (FIX for themeColor error) =================
+export const viewport = {
+    themeColor: "#0f172a",
+};
+
+
 // ================= SEO =================
 export async function generateMetadata({ params }) {
-
     const { slug } = await params;
 
-    try {
+    let job = null;
 
+    try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
             {
@@ -15,105 +29,114 @@ export async function generateMetadata({ params }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-
                 body: JSON.stringify({
                     details: true,
-                    slug: slug
-                })
+                    slug,
+                }),
             }
         );
 
-        const data = await res.json();
-
-        const job = data?.data;
-
-        if (!job) {
-
-            return {
-                title: "Job Not Found",
-            };
-
+        if (res.ok) {
+            const data = await res.json();
+            job = data?.data;
         }
-
-        const getField = (name) =>
-            job?.fields?.find((f) => f.fieldName === name)?.value;
-
-        const title = getField("Job Advertisement Title") || "Latest Govt Job";
-        const shortInfo = getField("Short Information") || "";
-
-        const cleanDesc = shortInfo
-            ?.replace(/<[^>]*>/g, "")
-            ?.slice(0, 160);
-
-        const url = `${process.env.NEXT_PUBLIC_BASE_URL}/${slug}`;
-
-        return {
-
-            title: `${title} | Latest Govt Job Updates`,
-            description: cleanDesc,
-            keywords: [
-                title,
-                "Govt Job",
-                "Online Form",
-                "Sarkari Result",
-                "Latest Jobs",
-                "2026 Jobs",
-                "Latest Online Form",
-                "Sarkari Result",
-                "Govt Jobs 2026",
-                "SSC Online Form",
-                "Railway Online Form",
-                "Online Form",
-                "UPSC Online Form",
-                "Defence Online Form",
-                "Bank Online Form",
-                "Latest Online Form",
-            ],
-
-            alternates: {
-                canonical: url,
-            },
-
-            openGraph: {
-                title,
-                description: cleanDesc,
-                url,
-                type: "article",
-                siteName: "Job Portal",
-            },
-
-            twitter: {
-                card: "summary_large_image",
-                title,
-                description: cleanDesc,
-            },
-
-            robots: {
-                index: true,
-                follow: true,
-            },
-
-        };
-
-    } catch (error) {
-
-        console.log(error);
-
-        return {
-            title: "Job Details",
-        };
-
+    } catch (err) {
+        console.error("Metadata fetch error:", err);
     }
 
+    if (!job) {
+        return {
+            title: "Job Not Found | Jobs Live Now",
+            description: "Latest government and private job updates in India.",
+        };
+    }
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+    const url = `${baseUrl}/${slug}`;
+
+    return {
+        title: generateSEOTitle(job),
+        description: generateSEODescription(job),
+
+        keywords: generateJobKeywords(job),
+
+        alternates: {
+            canonical: url,
+        },
+
+        openGraph: {
+            title: generateSEOTitle(job),
+            description: generateSEODescription(job),
+            url,
+            siteName: "Jobs Live Now",
+            type: "article",
+        },
+
+        twitter: {
+            card: "summary_large_image",
+            title: generateSEOTitle(job),
+            description: generateSEODescription(job),
+        },
+
+        robots: {
+            index: true,
+            follow: true,
+        },
+    };
 }
+
 
 // ================= PAGE =================
 export default async function Page({ params }) {
-
     const { slug } = await params;
 
-    return (
-        <JobDetailsClient slug={slug} />
-    );
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+    const url = `${baseUrl}/${slug}`;
 
+    let job = null;
+
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
+            {
+                method: "POST",
+                cache: "no-store",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    details: true,
+                    slug,
+                }),
+            }
+        );
+
+        if (res.ok) {
+            const data = await res.json();
+            job = data?.data;
+            if (job) {
+                notifySearchEngines(url);
+            }
+        }
+    } catch (err) {
+        console.error(err);
+    }
+
+    return (
+        <>
+            {/* 🔥 SEO BOOST: Job Schema */}
+            {job && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(generateJobSchema(job, url)),
+                    }}
+                />
+            )}
+
+
+            {/* Page UI */}
+            <JobDetailsClient slug={slug} />
+        </>
+    );
 }

@@ -1,13 +1,14 @@
-import { sitemapurl } from "./utils/common-text";
-
 export default function robots() {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
     return {
         rules: [
             {
                 userAgent: "*",
                 allow: "/",
+                disallow: ["/admin", "/api"],
             },
         ],
-        sitemap: sitemapurl,
+        sitemap: `${baseUrl}/sitemap.xml`,
     };
 }

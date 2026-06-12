@@ -36,6 +36,18 @@ export default function Page() {
         fetchData();
     }, []);
 
+    const publishJob = async (slug) => {
+        await fetch("/api/job-publish", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ slug }),
+        });
+
+        alert("Job published & indexing triggered");
+    }
+
     // ================= CHANGE =================
     const handleChange = (index, value) => {
         const updated = [...field];
@@ -213,8 +225,8 @@ export default function Page() {
                     name: name,
                     slug: slugify(name),
                     status: "0",
-                    category : "Jobs",
-                    author:  getSessionStorageData('admin')?.name ? getSessionStorageData('admin')?.name : "Admin",
+                    category: "Jobs",
+                    author: getSessionStorageData('admin')?.name ? getSessionStorageData('admin')?.name : "Admin",
                     fields: field
                 }
                 const res = await fetch("/api/job", {
@@ -228,8 +240,9 @@ export default function Page() {
                 const data = await res.json();
 
                 if (data.success) {
+                    await publishJob(slugify(name))
                     toast.success(data.message);
-                    router.push(adminpath+"/job")
+                    router.push(adminpath + "/job")
                 } else {
                     toast.error(data.message);
                 }

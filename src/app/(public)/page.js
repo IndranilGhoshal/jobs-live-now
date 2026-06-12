@@ -281,7 +281,7 @@ export default async function Page() {
                         <h1>{title}: {year}</h1>
                         <p><strong>{title}</strong> is a dedicated portal for official government job notifications, results, admit cards, answer keys, and exam updates. Here you can easily access all updates related to SSC, Banking, Railway, UPSC, Police, Defence and other government jobs.</p>
 
-                        <h2>Latest Goverment Result Information</h2>
+                        <h2>Latest Result Information</h2>
                         <p>Every government recruitment starts with an official notification. On {title}, you will get the fastest updates of recruitment notifications, admit cards, answer keys and results from central and state government departments.</p>
 
                         <h2>Why Choose {title}?</h2>
@@ -292,7 +292,7 @@ export default async function Page() {
                             <li>Direct online apply links</li>
                         </ul>
 
-                        <h2>Important Instructions Before Applying</h2>
+                        <h2>Instructions Before Applying</h2>
                         <ul>
                             <li>Check eligibility criteria (age, qualification)</li>
                             <li>Fill form carefully with correct details</li>
@@ -301,7 +301,7 @@ export default async function Page() {
                             <li>Keep a copy of submitted form</li>
                         </ul>
 
-                        <h2>Major Government Job Categories</h2>
+                        <h2>Major Jobs Categories</h2>
 
                         <h3>1. Civil Services (UPSC)</h3>
                         <p>UPSC conducts IAS, IPS, and IFS exams every year. These are among the most prestigious and competitive exams in India.</p>
@@ -324,7 +324,7 @@ export default async function Page() {
                         <h3>7. Jobs for 10th Pass</h3>
                         <p>Government departments offer jobs like peon, constable, driver, helper, trackman etc.</p>
 
-                        <h2>Sarkari Exam Process</h2>
+                        <h2>{title} Process</h2>
                         <ol>
                             <li>Notification Released</li>
                             <li>Online Application</li>
