@@ -20,7 +20,7 @@ export default async function PublicLayout({ children }) {
       });
     const data = await res.json();
     if (data.success) {
-      marquees = data?.data;
+      marquees = data?.data?.marquee;
     } else {
       marquees = "";
     }
