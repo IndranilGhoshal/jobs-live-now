@@ -1,6 +1,6 @@
 import SocialJoinLink from "@/app/_component/SocialJoinLink";
 import SocialLinks from "@/app/_component/SocialLinks";
-import { title, url, year } from "@/app/utils/common-text";
+import { year } from "@/app/utils/common-text";
 import moment from "moment";
 import Link from "next/link";
 
@@ -27,14 +27,14 @@ export const metadata = {
   ],
 
   alternates: {
-    canonical: url + "/top-online-form",
+    canonical: "https://www.jobslivenow.in/top-online-form",
   },
 
   openGraph: {
     title: "Top Online Form",
     description: "Latest Government Job Online Forms and Recruitment Updates.",
-    url: url + "/top-online-form",
-    siteName: title,
+    url: "https://www.jobslivenow.in/top-online-form",
+    siteName: "Jobs Live Now",
     type: "website",
   },
 

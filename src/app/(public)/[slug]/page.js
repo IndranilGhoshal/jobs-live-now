@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
 
     if (!job) {
         return {
-            title: "Job Not Found | Jobs Live Now",
+            title: "Job Not Found",
             description: "Latest government and private job updates in India.",
         };
     }

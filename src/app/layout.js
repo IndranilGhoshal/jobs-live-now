@@ -1,12 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-
 import { LoaderProvider } from "./_context/LoaderContext";
 import RouteLoader from "./_component/RouteLoader";
 import NoInternet from "./_component/NoInternet";
-
-import { title, url } from "./utils/common-text";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -23,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL(url),
+  metadataBase: new URL("https://www.jobslivenow.in"),
 
   title: {
     default:
@@ -63,13 +60,15 @@ export const metadata = {
     "high salary jobs India",
     "online job apply",
     "career opportunities India",
-    "Jobs Live Now",
-    "daily job alerts India"
+    "daily job alerts India",
   ],
 
-  authors: [{ name: title }],
-  creator: title,
-  publisher: title,
+  authors: [{ name: "Jobs Live Now" }],
+  creator: "Jobs Live Now",
+  publisher: "Jobs Live Now",
+  applicationName: "Jobs Live Now",
+  category: "Jobs",
+  referrer: "origin-when-cross-origin",
 
   robots: {
     index: true,
@@ -84,7 +83,7 @@ export const metadata = {
   },
 
   alternates: {
-    canonical: url,
+    canonical: "https://www.jobslivenow.in",
   },
 
   openGraph: {
@@ -92,16 +91,16 @@ export const metadata = {
       "Jobs Live Now - Results, Govt Jobs Forms, Admit Card, Syllabus, Answer Keys, Admissions and Exam Updates",
     description:
       "Get latest Sarkari Result, Government Jobs, Online Forms, Admit Cards and Exam Updates.",
-    url: url,
-    siteName: title,
+    url: "https://www.jobslivenow.in",
+    siteName: "Jobs Live Now",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "https://www.jobslivenow.in/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: title,
+        alt: "Jobs Live Now",
       },
     ],
   },
@@ -111,7 +110,9 @@ export const metadata = {
     title: "Jobs Live Now",
     description:
       "Latest Government Jobs, Results, Admit Cards, Answer Keys and Online Forms.",
-    images: ["/images/og-image.png"],
+    images: [
+      "https://www.jobslivenow.in/images/og-image.png",
+    ],
   },
 
   icons: {
@@ -131,20 +132,42 @@ export default function RootLayout({ children }) {
     "@graph": [
       {
         "@type": "Organization",
+        "@id": "https://www.jobslivenow.in/#organization",
         name: "Jobs Live Now",
         url: "https://www.jobslivenow.in",
-        logo: "https://www.jobslivenow.in/logo.png",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://www.jobslivenow.in/logo.png",
+        },
       },
       {
         "@type": "WebSite",
-        name: "Jobs Live Now",
+        "@id": "https://www.jobslivenow.in/#website",
         url: "https://www.jobslivenow.in",
+        name: "Jobs Live Now",
+        publisher: {
+          "@id": "https://www.jobslivenow.in/#organization",
+        },
         potentialAction: {
           "@type": "SearchAction",
           target:
             "https://www.jobslivenow.in/job-list?search={search_term_string}",
           "query-input": "required name=search_term_string",
         },
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.jobslivenow.in/#webpage",
+        url: "https://www.jobslivenow.in",
+        name: "Jobs Live Now",
+        isPartOf: {
+          "@id": "https://www.jobslivenow.in/#website",
+        },
+        about: {
+          "@id": "https://www.jobslivenow.in/#organization",
+        },
+        description:
+          "Latest Government Jobs, Results, Admit Cards, Answer Keys and Admissions.",
       },
     ],
   };
@@ -163,8 +186,10 @@ export default function RootLayout({ children }) {
         />
 
 
-        <script
+        <Script
+          id="schema-org"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
           }}

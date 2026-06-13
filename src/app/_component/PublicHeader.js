@@ -92,7 +92,7 @@ export default function PublicHeader() {
                                 <Image
                                     className="logo-img"
                                     src={logo}
-                                    alt="logo"
+                                    alt="Jobs Live Now Government Jobs Portal"
                                     width={120}
                                     height={40}
                                     priority
