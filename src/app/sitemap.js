@@ -1,10 +1,10 @@
+export const dynamic = "force-dynamic";
 export default async function sitemap() {
   const baseUrl = "https://www.jobslivenow.in";
 
   try {
     const res = await fetch(`${baseUrl}/api/public-job`, {
       method: "POST",
-      cache: "no-store",
       headers: {
         "Content-Type": "application/json",
       },
