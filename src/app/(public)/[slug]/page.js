@@ -138,7 +138,7 @@ export default async function Page({ params }) {
 
 
             {/* Page UI */}
-            <JobDetailsClient job={jobdetails} />
+            <JobDetailsClient job={JSON.stringify(jobdetails)} />
         </>
     );
 }
