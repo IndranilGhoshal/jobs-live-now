@@ -1,4 +1,5 @@
 import ContactClient from "@/app/_component/ContactClient";
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Contact Us",
   description:

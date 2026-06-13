@@ -10,13 +10,13 @@ export default async function PublicLayout({ children }) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/marquee`,
       {
         method: "POST",
-        cache: "no-store",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           details: true
         }),
+        next: { revalidate: 60 }
       });
     const data = await res.json();
     if (data.success) {

@@ -2,6 +2,8 @@ import SocialJoinLink from "@/app/_component/SocialJoinLink";
 import SocialLinks from "@/app/_component/SocialLinks";
 import { title } from "@/app/utils/common-text";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
     title: "About Us",
     description:
