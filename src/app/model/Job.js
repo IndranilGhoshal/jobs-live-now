@@ -13,11 +13,12 @@ const FieldSchema = new mongoose.Schema({
 
 const JobModel = new mongoose.Schema({
     name: String,
-    slug: String,
     category: String,
     status: String,
     author: String,
+    slug: { type: String, index: true },
+    updatedAt: { type: Date, index: true },
     fields: [FieldSchema],
 }, { timestamps: true });
 
-export const JobSchema =  mongoose.models.jobs || mongoose.model("jobs", JobModel);
+export const JobSchema = mongoose.models.jobs || mongoose.model("jobs", JobModel);

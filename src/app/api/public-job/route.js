@@ -31,6 +31,25 @@ export async function POST(req) {
             responsestatus = StatusCodes.SUCCESS
             success = true
             message = "Job found"
+        } else if (sitemap) {
+            let jobs = await JobSchema.find({
+                category: "Jobs",
+                status: "0",
+            })
+                .select("slug updatedAt")
+                .sort({ updatedAt: -1 })
+                .lean();
+            if (jobs) {
+                result = jobs
+                responsestatus = StatusCodes.SUCCESS
+                success = true
+                message = "Job found"
+            } else {
+                result = []
+                responsestatus = StatusCodes.NO_CONTENT
+                success = false
+                message = "Job not found"
+            }
         } else if (payload.details) {
             filter = { slug: payload.slug, status: { $in: ['0'] } }
             result = await JobSchema.findOne(filter);
@@ -41,7 +60,7 @@ export async function POST(req) {
             } else {
                 responsestatus = StatusCodes.NO_CONTENT
                 success = false
-                message = "Job found not found"
+                message = "Job not found"
             }
         }
 
