@@ -118,7 +118,11 @@ export const metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
-  }
+  },
+
+  verification: {
+    google: "Pxk92YSbh2DuZdWYZyzTh4Vmpt-PZUFOQlwucAw65AQ",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -153,7 +157,6 @@ export default function RootLayout({ children }) {
     >
       <head>
         <meta name="theme-color" content="#0d6efd" />
-
         <link
           rel="preconnect"
           href="https://cdn.jsdelivr.net"
