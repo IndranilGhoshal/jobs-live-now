@@ -3,162 +3,109 @@ import SocialLinks from "@/app/_component/SocialLinks";
 import { title } from "@/app/utils/common-text";
 
 export const metadata = {
-  title: "Terms and Conditions | Jobs Live Now",
+  title: "Terms and Conditions",
   description:
-    "Read the Terms and Conditions for using Jobs Live Now. Learn about user responsibilities, website usage, content policies, and limitations.",
+    "Read the Terms and Conditions for using Jobs Live Now. Learn about website usage, responsibilities, content policy, and limitations.",
   keywords:
-    "Terms and Conditions, Jobs Live Now Terms, Website Terms, Government Jobs Portal"
+    "Terms and Conditions, Jobs Live Now Terms, Website Rules, Government Jobs Portal Policy",
 };
 
 export default function Page() {
-
   return (
-    <div className="container py-5">
-
+    <div className="container txt-cont py-5">
       <div className="row">
         <div className="col-md-12">
           <SocialJoinLink />
         </div>
+
         <div className="col-md-12">
-
           <div className="card shadow-sm border-0">
-
             <div className="card-body p-4">
 
-              <h1 className="mb-4">
-                Terms and Conditions
-              </h1>
+              <h1 className="mb-4">Terms and Conditions</h1>
 
               <p>
-                Welcome to <strong>{title}</strong>.
-                By accessing and using our website, you agree
-                to comply with and be bound by the following
-                Terms and Conditions. If you do not agree with
-                any part of these terms, please discontinue use
-                of our website.
+                Welcome to <strong>{title}</strong>. By accessing or using this website,
+                you agree to comply with and be bound by these Terms and Conditions.
+                If you do not agree with any part of these terms, please do not use
+                our website.
               </p>
 
-              <h2 className="mt-4">
-                Use of Website
-              </h2>
-
+              <h2 className="mt-4">1. Use of Website</h2>
               <p>
-                {title} provides information related to
-                government jobs, admit cards, results, answer
-                keys, admissions, and educational updates.
-                The information published on this website is
-                intended for general informational purposes only.
+                {title} provides information related to government jobs, admit cards,
+                results, answer keys, admissions, and other career-related updates.
+                All content is provided for general informational purposes only.
               </p>
 
-              <h2 className="mt-4">
-                Accuracy of Information
-              </h2>
-
+              <h2 className="mt-4">2. Information Accuracy</h2>
               <p>
-                While we strive to keep information accurate and
-                up-to-date, we do not guarantee the completeness,
-                reliability, or accuracy of any information
-                published on this website. Users should always
-                verify important details from the official
-                government or recruitment authority websites.
+                We try our best to keep all information accurate and updated.
+                However, we do not guarantee completeness or accuracy. Users should
+                always verify details from official government websites before applying.
               </p>
 
-              <h2 className="mt-4">
-                Intellectual Property
-              </h2>
-
+              <h2 className="mt-4">3. External Links</h2>
               <p>
-                All content on this website, including text,
-                design, graphics, logos, and other materials,
-                is the property of {title} unless otherwise
-                stated. Unauthorized copying, reproduction, or
-                redistribution of content is prohibited.
+                Our website may contain links to third-party or official websites.
+                We are not responsible for the content, policies, or accuracy of
+                external sites.
               </p>
 
-              <h2 className="mt-4">
-                User Responsibilities
-              </h2>
-
+              <h2 className="mt-4">4. User Responsibility</h2>
               <ul>
                 <li>Use the website only for lawful purposes.</li>
-                <li>Do not attempt to harm, hack, or disrupt the website.</li>
-                <li>Do not misuse website content or services.</li>
-                <li>Respect applicable laws and regulations.</li>
+                <li>Do not misuse or copy content without permission.</li>
+                <li>Verify all job information from official sources.</li>
+                <li>Do not attempt to damage or hack the website.</li>
               </ul>
 
-              <h2 className="mt-4">
-                Third-Party Links
-              </h2>
-
+              <h2 className="mt-4">5. Advertisement Policy</h2>
               <p>
-                Our website may contain links to external websites
-                for additional information or official notifications.
-                We are not responsible for the content, policies,
-                or practices of third-party websites.
+                This website may display advertisements through Google AdSense and
+                other networks. Ads are automatically served and we do not control
+                individual ad content.
               </p>
 
-              <h2 className="mt-4">
-                Advertisement Policy
-              </h2>
-
+              <h2 className="mt-4">6. Limitation of Liability</h2>
               <p>
-                {title} may display advertisements through
-                Google AdSense and other advertising partners.
-                Advertisements displayed on our website do not
-                imply endorsement of any product, service, or
-                organization.
+                {title} is not responsible for any loss, damage, or issues arising
+                from the use of information on this website. Users are responsible
+                for their own actions based on the content.
               </p>
 
-              <h2 className="mt-4">
-                Limitation of Liability
-              </h2>
-
+              <h2 className="mt-4">7. Intellectual Property</h2>
               <p>
-                {title} shall not be held liable for any
-                direct, indirect, incidental, or consequential
-                damages arising from the use of this website or
-                reliance on information provided herein.
+                All content, design, and structure of this website are owned by
+                {title} unless otherwise stated. Unauthorized copying or reuse is
+                strictly prohibited.
               </p>
 
-              <h2 className="mt-4">
-                Changes to Terms
-              </h2>
-
+              <h2 className="mt-4">8. Changes to Terms</h2>
               <p>
-                We reserve the right to modify these Terms and
-                Conditions at any time without prior notice.
-                Changes will be effective immediately upon posting
-                on this page.
+                We may update these Terms and Conditions at any time without prior notice.
+                Changes will be posted on this page with the updated date.
               </p>
 
-              <h2 className="mt-4">
-                Governing Law
-              </h2>
-
+              <h2 className="mt-4">9. Governing Law</h2>
               <p>
-                These Terms and Conditions shall be governed by
-                and interpreted in accordance with the laws of India.
+                These Terms and Conditions are governed by the laws of India.
               </p>
 
-              <h2 className="mt-4">
-                Contact Us
-              </h2>
-
+              <h2 className="mt-4">10. Contact Us</h2>
               <p>
-                If you have any questions regarding these Terms
-                and Conditions, please contact us through our
-                Contact Us page.
+                If you have any questions regarding these Terms, please contact us
+                via the Contact Us page.
               </p>
 
             </div>
-
           </div>
         </div>
+
         <div className="col-md-12">
           <SocialLinks />
         </div>
       </div>
-
     </div>
   );
 }

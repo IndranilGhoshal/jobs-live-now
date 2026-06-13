@@ -761,6 +761,14 @@ h2.top-sub-bar {
 }
 
 
+
+.txt-cont h1,.txt-cont h2{
+    color: #0d47a1;
+}
+
+
+
+
 .no-data-box-list {
     width: 100%;
 

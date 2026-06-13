@@ -75,7 +75,7 @@ export default function JobDetailsClient({ job }) {
     const postdate = temp?.createdAt || "";
 
 
-    
+
 
     if (array.length > 0) {
         for (let a of array) {
@@ -307,6 +307,15 @@ export default function JobDetailsClient({ job }) {
 
                     ))
                 }
+
+                <div className="text-center">
+                    {/* DISCLAIMER */}
+                    <p style={{ fontSize: "14px", color: "#666" }}>
+                        Disclaimer: This information is collected from official sources and
+                        public notifications. Please verify details from official website
+                        before applying.
+                    </p>
+                </div>
 
             </div>
 
