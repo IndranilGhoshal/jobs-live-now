@@ -6,197 +6,18 @@ import moment from "moment";
 import { slugify, slugToTitle } from "../utils/common";
 import SocialLinks from "./SocialLinks";
 
-export default function JobDetailsClient({ slug }) {
+export default function JobDetailsClient({ job }) {
 
-    const [job, setJob] = useState(null);
-    const [jobdetails, setJobdetails] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // ================= FETCH JOB =================
-    useEffect(() => {
+    setTimeout(() => {
+        setLoading(false);
+    }, 300);
 
-        if (slug) {
-            fetchJob();
-        }
-
-    }, [slug]);
-
-    const fetchJob = async () => {
-
-        try {
-
-            setLoading(true);
-
-            const res = await fetch("/api/public-job", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    details: true,
-                    slug: slug,
-                }),
-            });
-
-            const data = await res.json();
-
-            if (data.success) {
-
-                if (data.data) {
-
-                    setJob(data.data);
-
-                    let temp = data.data;
-                    let array = temp.fields;
-
-                    let finalarray = [];
-
-                    if (array.length > 0) {
-
-                        for (let a of array) {
-
-                            if (
-                                a.fieldName !== "Job Advertisement Title" &&
-                                a.fieldName !== "Organisation Name" &&
-                                a.fieldName !== "Job Advertisement Number" &&
-                                a.fieldName !== "Job Type" &&
-                                a.fieldName !== "Application Date" &&
-                                a.fieldName !== "Qualification Allow" &&
-                                a.fieldName !== "Tags" &&
-                                a.fieldName !== "Short Information" &&
-                                a.fieldName !== "Job Category"
-                            ) {
-                                finalarray.push(a);
-                            }
-
-                        }
-
-                        setJobdetails(finalarray);
-
-                    }
-
-                }
-
-            }
-
-        } catch (err) {
-
-            console.log(err);
-
-        } finally {
-
-            setLoading(false);
-
-        }
-
-    };
-
-    // ================= GET FIELD =================
-    const getField = (name) => {
-
-        return job?.fields?.find(
-            (f) => f.fieldName === name
-        );
-
-    };
-
-    // ================= FIELD VALUES =================
-    const title =
-        getField("Job Advertisement Title")?.value || "";
-
-    const category =
-        job?.category || "Admin";
-
-    const advertisementnumber =
-        getField("Job Advertisement Number")?.value || "";
-
-    const organisation =
-        getField("Organisation Name")?.value || "";
-
-    const author =
-        job?.author || "Admin";
-
-    const tags =
-        getField("Tags")?.value || [];
-
-    const shortInfo =
-        getField("Short Information")?.value || "";
-
-    const postdate =
-        job?.createdAt || "";
-
-    // ================= LOADING =================
-    if (loading) {
-
-        return (
-            <div className="container job-dtl main">
-
-                {/* ================= TITLE ================= */}
-                <div className="skeleton skeleton-title mb-3"></div>
-
-                {/* ================= BREADCRUMB ================= */}
-                <div className="skeleton skeleton-breadcrumb mb-3"></div>
-
-                {/* ================= MAIN CARD ================= */}
-                <div className="card-box p-3">
-
-                    {/* Heading */}
-                    <div className="skeleton skeleton-heading mb-4"></div>
-
-                    {/* Table Rows */}
-                    {
-                        Array.from({ length: 10 }).map((_, i) => (
-
-                            <div
-                                key={i}
-                                className="skeleton-row"
-                            >
-
-                                <div className="skeleton skeleton-label"></div>
-
-                                <div className="skeleton skeleton-value"></div>
-
-                            </div>
-
-                        ))
-                    }
-
-                    {/* Buttons */}
-                    <div className="d-flex gap-2 mt-4">
-
-                        <div className="skeleton skeleton-btn"></div>
-
-                        <div className="skeleton skeleton-btn"></div>
-
-                    </div>
-
-                </div>
-
-                {/* ================= CONTENT ================= */}
-                <div className="card-box p-3 mt-3">
-
-                    <div className="skeleton skeleton-heading mb-3"></div>
-
-                    {
-                        Array.from({ length: 8 }).map((_, i) => (
-
-                            <div
-                                key={i}
-                                className="skeleton skeleton-line mb-2"
-                            ></div>
-
-                        ))
-                    }
-
-                </div>
-
-            </div>
-        );
-
-    }
+    const data = job ? JSON.parse(job) : null;
 
     // ================= NOT FOUND =================
-    if (!job) {
+    if (!data) {
 
         return (
             <div className="container job-dttls main">
@@ -219,6 +40,129 @@ export default function JobDetailsClient({ slug }) {
         );
 
     }
+
+
+    // ================= GET FIELD =================
+    const getField = (name) => {
+
+        return data?.fields?.find(
+            (f) => f.fieldName === name
+        );
+
+    };
+
+    // ================= FIELD VALUES =================
+    const title =
+        getField("Job Advertisement Title")?.value || "";
+
+    const category =
+        data?.category || "Admin";
+
+    const advertisementnumber =
+        getField("Job Advertisement Number")?.value || "";
+
+    const organisation =
+        getField("Organisation Name")?.value || "";
+
+    const author =
+        data?.author || "Admin";
+
+    const tags =
+        getField("Tags")?.value || [];
+
+    const shortInfo =
+        getField("Short Information")?.value || "";
+
+    const postdate =
+        data?.createdAt || "";
+
+
+    const temp = data.data;
+
+    const array = temp.fields;
+
+    let finalarray = [];
+
+    if (array.length > 0) {
+        for (let a of array) {
+            if (
+                a.fieldName !== "Job Advertisement Title" &&
+                a.fieldName !== "Organisation Name" &&
+                a.fieldName !== "Job Advertisement Number" &&
+                a.fieldName !== "Job Type" &&
+                a.fieldName !== "Application Date" &&
+                a.fieldName !== "Qualification Allow" &&
+                a.fieldName !== "Tags" &&
+                a.fieldName !== "Short Information" &&
+                a.fieldName !== "Job Category"
+            ) {
+                finalarray.push(a);
+            }
+        }
+    }
+
+    // ================= LOADING =================
+    if (loading) {
+
+        return (
+            <div className="container job-dtl main">
+
+                <div className="skeleton skeleton-title mb-3"></div>
+
+                <div className="skeleton skeleton-breadcrumb mb-3"></div>
+
+                <div className="card-box p-3">
+
+                    <div className="skeleton skeleton-heading mb-4"></div>
+
+                    {
+                        Array.from({ length: 10 }).map((_, i) => (
+
+                            <div
+                                key={i}
+                                className="skeleton-row"
+                            >
+
+                                <div className="skeleton skeleton-label"></div>
+
+                                <div className="skeleton skeleton-value"></div>
+
+                            </div>
+
+                        ))
+                    }
+                    <div className="d-flex gap-2 mt-4">
+
+                        <div className="skeleton skeleton-btn"></div>
+
+                        <div className="skeleton skeleton-btn"></div>
+
+                    </div>
+
+                </div>
+                <div className="card-box p-3 mt-3">
+
+                    <div className="skeleton skeleton-heading mb-3"></div>
+
+                    {
+                        Array.from({ length: 8 }).map((_, i) => (
+
+                            <div
+                                key={i}
+                                className="skeleton skeleton-line mb-2"
+                            ></div>
+
+                        ))
+                    }
+
+                </div>
+
+            </div>
+        );
+
+    }
+
+
 
     return (
         <>
@@ -351,7 +295,7 @@ export default function JobDetailsClient({ slug }) {
 
                 {/* ================= DETAILS ================= */}
                 {
-                    jobdetails.map((item, i) => (
+                    finalarray.map((item, i) => (
 
                         <div key={i} className="card-box">
 

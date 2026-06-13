@@ -94,6 +94,7 @@ export default async function Page({ params }) {
     const url = `${baseUrl}/${slug}`;
 
     let job = null;
+    let jobdetails = null;
 
     try {
         const res = await fetch(
@@ -113,6 +114,7 @@ export default async function Page({ params }) {
 
         if (res.ok) {
             const data = await res.json();
+            jobdetails = data
             job = data?.data;
             if (job) {
                 notifySearchEngines(url);
@@ -136,7 +138,7 @@ export default async function Page({ params }) {
 
 
             {/* Page UI */}
-            <JobDetailsClient slug={slug} />
+            <JobDetailsClient job={jobdetails} />
         </>
     );
 }
