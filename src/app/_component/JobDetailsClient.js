@@ -41,47 +41,41 @@ export default function JobDetailsClient({ job }) {
 
     }
 
+    const temp = data.data;
+
+    const array = temp.fields;
+
+    let finalarray = [];
+
 
     // ================= GET FIELD =================
     const getField = (name) => {
 
-        return data?.fields?.find(
+        return temp?.fields?.find(
             (f) => f.fieldName === name
         );
 
     };
 
     // ================= FIELD VALUES =================
-    const title =
-        getField("Job Advertisement Title")?.value || "";
+    const title = getField("Job Advertisement Title")?.value || "";
 
-    const category =
-        data?.category || "Admin";
+    const category = temp?.category || "Admin";
 
-    const advertisementnumber =
-        getField("Job Advertisement Number")?.value || "";
+    const advertisementnumber = getField("Job Advertisement Number")?.value || "";
 
-    const organisation =
-        getField("Organisation Name")?.value || "";
+    const organisation = getField("Organisation Name")?.value || "";
 
-    const author =
-        data?.author || "Admin";
+    const author = temp?.author || "Admin";
 
-    const tags =
-        getField("Tags")?.value || [];
+    const tags = getField("Tags")?.value || [];
 
-    const shortInfo =
-        getField("Short Information")?.value || "";
+    const shortInfo = getField("Short Information")?.value || "";
 
-    const postdate =
-        data?.createdAt || "";
+    const postdate = temp?.createdAt || "";
 
 
-    const temp = data.data;
-
-    const array = temp.fields;
-
-    let finalarray = [];
+    
 
     if (array.length > 0) {
         for (let a of array) {
