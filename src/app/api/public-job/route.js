@@ -31,7 +31,7 @@ export async function POST(req) {
             responsestatus = StatusCodes.SUCCESS
             success = true
             message = "Job found"
-        } else if (sitemap) {
+        } else if (payload.sitemap) {
             let jobs = await JobSchema.find({
                 category: "Jobs",
                 status: "0",
