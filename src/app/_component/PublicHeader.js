@@ -1,10 +1,7 @@
 
 "use client";
 
-import React, {
-    useEffect,
-    useState,
-} from "react";
+import React from "react";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import logo from "../../../public/images/logo.png";
@@ -12,49 +9,11 @@ import '../../../public/css/public_style.css'
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
 import { title } from "../utils/common-text";
-import { useApi } from "../utils/api";
 
-export default function PublicHeader() {
-    const { postData, getData } = useApi();
+export default function PublicHeader({menus, marquees}) {
+    const menu = menus ? JSON.parse(menus) : null;
+    const marquee = marquees ? JSON.parse(marquees) : null;
     const pathname = usePathname();
-    const [marqueeText, setMarqueeText] = useState("");
-    const [menus, setMenus] = useState([]);
-    // ================= FETCH MARQUEE =================
-
-    const fetchMarquee = async () => {
-        try {
-            let data = await postData (`/api/marquee`, {details: true})
-            if (data.success) {
-                setMarqueeText(data?.data?.marquee || "");
-            }else{
-                setMarqueeText("");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
-    const fetchMenus = async () => {
-        try {
-            const data = await getData(`/api/public-menu`);
-            if (data.success) {
-                setMenus(data?.data || []);
-            } else {
-                setMenus([]);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    // ================= USE EFFECT =================
-
-    useEffect(() => {
-        fetchMenus();
-        fetchMarquee();
-
-    }, []);
 
 
     const onnavremoveclass = () =>{
@@ -117,7 +76,7 @@ export default function PublicHeader() {
                             <div className="collapse navbar-collapse" id="nav">
                                 <ul className="navbar-nav mx-auto">
                                     {
-                                        menus.map((item, i) => (
+                                        menu.map((item, i) => (
                                             <li key={i} className="nav-item" onClick={()=>{onnavremoveclass()}}>
                                                 <Link
                                                     href={item.path}
@@ -148,7 +107,7 @@ export default function PublicHeader() {
                             className="breaking"
                         >
 
-                            {marqueeText}
+                            {marquee}
 
                         </Marquee>
 
