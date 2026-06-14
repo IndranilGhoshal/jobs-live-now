@@ -1,83 +1,56 @@
 import JobDetailsClient from "@/app/_component/JobDetailsClient";
-import { notifySearchEngines } from "@/app/utils/indexingBooster";
+import { getJob } from "@/app/utils/getJob";
 import { generateJobSchema } from "@/app/utils/jobSchema";
 import { generateSEODescription } from "@/app/utils/seoDescription";
 import { generateJobKeywords } from "@/app/utils/seoKeywords";
 import { generateSEOTitle } from "@/app/utils/seoTitle";
-
 export const dynamic = "force-dynamic";
-
-
-// ================= VIEWPORT (FIX for themeColor error) =================
-export const viewport = {
-    themeColor: "#0f172a",
-};
-
 
 // ================= SEO =================
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-
-    let job = null;
-
-    try {
-        const res = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
-            {
-                method: "POST",
-                cache: "no-store",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    details: true,
-                    slug,
-                }),
-            }
-        );
-
-        if (res.ok) {
-            const data = await res.json();
-            job = data?.data;
-        }
-    } catch (err) {
-        console.error("Metadata fetch error:", err);
-    }
-
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    if (!baseUrl) throw new Error("BASE_URL missing");
+    const url = `${baseUrl}/${slug}`;
+    const data = await getJob(slug);
+    const job = data?.data;
     if (!job) {
         return {
             title: "Job Not Found",
             description: "Latest government and private job updates in India.",
         };
     }
-
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
-    const url = `${baseUrl}/${slug}`;
-
     return {
         title: generateSEOTitle(job),
         description: generateSEODescription(job),
-
         keywords: generateJobKeywords(job),
-
         alternates: {
             canonical: url,
         },
-
         openGraph: {
             title: generateSEOTitle(job),
             description: generateSEODescription(job),
             url,
             siteName: "Jobs Live Now",
+            locale: "en_IN",
             type: "article",
+            images: [
+                {
+                    url: "https://www.jobslivenow.in/og-image.png",
+                    width: 1200,
+                    height: 630,
+                    alt: "Jobs Live Now",
+                },
+            ],
         },
-
         twitter: {
             card: "summary_large_image",
             title: generateSEOTitle(job),
             description: generateSEODescription(job),
+            images: [
+                "https://www.jobslivenow.in/og-image.png",
+            ],
         },
-
         robots: {
             index: true,
             follow: true,
@@ -89,41 +62,11 @@ export async function generateMetadata({ params }) {
 // ================= PAGE =================
 export default async function Page({ params }) {
     const { slug } = await params;
-
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    if (!baseUrl) throw new Error("BASE_URL missing");
     const url = `${baseUrl}/${slug}`;
-
-    let job = null;
-    let jobdetails = null;
-
-    try {
-        const res = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-job`,
-            {
-                method: "POST",
-                cache: "no-store",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    details: true,
-                    slug,
-                }),
-            }
-        );
-
-        if (res.ok) {
-            const data = await res.json();
-            jobdetails = data
-            job = data?.data;
-            if (job) {
-                notifySearchEngines(url);
-            }
-        }
-    } catch (err) {
-        console.error(err);
-    }
-
+    const data = await getJob(slug);
+    const job = data?.data;
     return (
         <>
             {/* 🔥 SEO BOOST: Job Schema */}
@@ -135,10 +78,8 @@ export default async function Page({ params }) {
                     }}
                 />
             )}
-
-
             {/* Page UI */}
-            <JobDetailsClient job={JSON.stringify(jobdetails)} />
+            <JobDetailsClient job={data} />
         </>
     );
 }

@@ -14,7 +14,7 @@ export default function JobDetailsClient({ job }) {
         setLoading(false);
     }, 300);
 
-    const data = job ? JSON.parse(job) : null;
+    const data = job ? job : null;
 
     // ================= NOT FOUND =================
     if (!data) {
