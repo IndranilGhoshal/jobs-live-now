@@ -25,6 +25,7 @@ export default function Page() {
     const [field, setField] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState({});
+    const [btnloading, setBtnLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -207,46 +208,56 @@ export default function Page() {
     };
 
     const saveDateJob = async () => {
-        const validationErrors = validateFields();
-        setErrors(validationErrors);
+        try {
+            setBtnLoading(true);
+            const validationErrors = validateFields();
+            setErrors(validationErrors);
 
-        if (Object.keys(validationErrors).length > 0) return;
+            if (Object.keys(validationErrors).length > 0) return;
 
-        let name = ''
+            let name = ''
 
-        for (let [i, f] of field.entries()) {
-            if (f.fieldName == "Job Advertisement Title") {
-                name = f.value
-            }
-
-            if (i === field.length - 1) {
-                let obj = {
-                    add: true,
-                    name: name,
-                    slug: slugify(name),
-                    status: "0",
-                    category: "Jobs",
-                    author: getSessionStorageData('admin')?.name ? getSessionStorageData('admin')?.name : "Admin",
-                    fields: field
+            for (let [i, f] of field.entries()) {
+                
+                if (f.fieldName == "Job Advertisement Title") {
+                    name = f.value
                 }
-                const res = await fetch("/api/job", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(obj)
-                });
 
-                const data = await res.json();
+                if (i === field.length - 1) {
+                    let obj = {
+                        add: true,
+                        name: name,
+                        slug: slugify(name),
+                        status: "0",
+                        category: "Jobs",
+                        author: getSessionStorageData('admin')?.name ? getSessionStorageData('admin')?.name : "Admin",
+                        fields: field
+                    }
+                    const res = await fetch("/api/job", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(obj)
+                    });
 
-                if (data.success) {
-                    await publishJob(slugify(name))
-                    toast.success(data.message);
-                    router.push(adminpath + "/job")
-                } else {
-                    toast.error(data.message);
+                    const data = await res.json();
+
+                    if (data.success) {
+                        await publishJob(slugify(name))
+                        toast.success(data.message);
+                        router.push(adminpath + "/job")
+                    } else {
+                        toast.error(data.message);
+                    }
                 }
             }
+        }
+        catch (err) {
+            console.log(err);
+            toast.error("Something went wrong");
+        } finally {
+            setBtnLoading(false);
         }
 
     };
@@ -450,7 +461,13 @@ export default function Page() {
                 )}
 
                 {!loading && (
-                    <button onClick={saveDateJob}>Save Job</button>
+                    <button disabled={btnloading} onClick={saveDateJob}>
+                        {
+                            btnloading
+                                ? "Saving..."
+                                : "Save Job"
+                        }
+                    </button>
                 )}
 
             </div>
