@@ -582,13 +582,14 @@ h2.top-sub-bar {
     color: black;
     list-style: disc;
     margin-left: 30px;
+    text-align: justify;
 }
 
 .job-dttls .card-box li:hover {
     background: transparent;
     padding-left: 10px;
     color: black;
-    width: 100%;
+    width: auto;
 }
 
 .tab-dle-tlt {
