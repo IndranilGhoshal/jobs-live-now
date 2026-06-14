@@ -19,6 +19,13 @@ const geistMono = Geist_Mono({
   preload: false,
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0d6efd",
+  colorScheme: "light",
+};
+
 export const metadata = {
   metadataBase: new URL("https://www.jobslivenow.in"),
 
@@ -73,6 +80,7 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -97,7 +105,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.jobslivenow.in/images/og-image.png",
+        url: "https://www.jobslivenow.in/og-image.png",
         width: 1200,
         height: 630,
         alt: "Jobs Live Now",
@@ -111,18 +119,31 @@ export const metadata = {
     description:
       "Latest Government Jobs, Results, Admit Cards, Answer Keys and Online Forms.",
     images: [
-      "https://www.jobslivenow.in/images/og-image.png",
+      "https://www.jobslivenow.in/og-image.png",
     ],
   },
 
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
-
+  manifest: "/site.webmanifest",
   verification: {
     google: "Pxk92YSbh2DuZdWYZyzTh4Vmpt-PZUFOQlwucAw65AQ",
+  },
+  formatDetection: {
+    telephone: false,
   },
 };
 
@@ -137,8 +158,9 @@ export default function RootLayout({ children }) {
         url: "https://www.jobslivenow.in",
         logo: {
           "@type": "ImageObject",
-          url: "https://www.jobslivenow.in/logo.png",
+          url: "https://www.jobslivenow.in/logo.png"
         },
+        image: "https://www.jobslivenow.in/logo.png",
       },
       {
         "@type": "WebSite",
@@ -147,12 +169,6 @@ export default function RootLayout({ children }) {
         name: "Jobs Live Now",
         publisher: {
           "@id": "https://www.jobslivenow.in/#organization",
-        },
-        potentialAction: {
-          "@type": "SearchAction",
-          target:
-            "https://www.jobslivenow.in/job-list?search={search_term_string}",
-          "query-input": "required name=search_term_string",
         },
       },
       {
@@ -179,10 +195,10 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
-        <meta name="theme-color" content="#0d6efd" />
         <link
           rel="preconnect"
           href="https://cdn.jsdelivr.net"
+          crossOrigin="anonymous"
         />
 
 
@@ -213,12 +229,14 @@ export default function RootLayout({ children }) {
 
             <Script id="google-analytics" strategy="afterInteractive">
               {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
 
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-        `}
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
             </Script>
           </>
         )}
