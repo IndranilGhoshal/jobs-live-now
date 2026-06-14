@@ -1,5 +1,6 @@
 "use client";
 import UsePagination from "@/app/_component/UsePagination";
+import { adminpath } from "@/app/utils/common-text";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
@@ -141,7 +142,7 @@ export default function Page() {
                     <span className="fab-text">Add Categories</span>
                     <button
                         className="fab-btn"
-                        onClick={() => router.push("/admin/add-categories")}
+                        onClick={() => router.push(adminpath+"/add-categories")}
                     >
                         <span className="fab-icon">+</span>
                     </button>
@@ -200,7 +201,7 @@ export default function Page() {
 
                                         <button
                                             className="icon-btn icon-edit"
-                                            onClick={() => router.push(`/admin/edit-job/${job.id}`)}
+                                            onClick={() => router.push(adminpath+`/edit-job/${job.id}`)}
                                         >
                                             ✏️
                                         </button>
