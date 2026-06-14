@@ -74,7 +74,6 @@ export default async function Page({ params }) {
     const title = getQualificationTitle(slug);
 
     const getLastDate = (fields) => {
-
         const applicationDateField =
             fields?.find(
                 (item) =>
@@ -85,10 +84,13 @@ export default async function Page({ params }) {
         if (!applicationDateField)
             return "";
 
-        return moment(
-            applicationDateField?.value?.end
-        ).format("MMM Do YYYY");
-
+        let lastdate = moment(applicationDateField?.value?.end).format("MMM Do YYYY")
+        const jobExpired = moment().isAfter(moment(applicationDateField?.value?.end, "YYYY-MM-DD"), "day");
+        if (jobExpired) {
+            return "Job Application Expired";
+        } else {
+            return lastdate;
+        }
     };
 
     return (
@@ -98,15 +100,13 @@ export default async function Page({ params }) {
             <header>
                 {/* ================= H1 ================= */}
                 <h1>
-                    Latest {title} Pass Jobs on 2026
+                    Latest {title} Pass Jobs
                 </h1>
 
                 {/* ================= DESCRIPTION ================= */}
                 <p className="category-desc">
 
-                    Get all latest {title} pass jobs updates including
-                    government jobs, notifications, important dates,
-                    admit cards and official links.
+                    Get latest Result, Admit Cards, Answer Keys and Online Forms in India. Updated daily.
 
                 </p>
             </header>
@@ -144,7 +144,7 @@ export default async function Page({ params }) {
                                                 href={`/${item.slug}`}
                                             >
                                                 <>
-                                                    <div>{i + 1}. {item.name}</div>
+                                                    <div className="topdvi">{i + 1}.<div className="mx-1">{item.name}</div></div>
                                                     <p>Last Date: {getLastDate(item.fields)}</p>
                                                 </>
                                             </Link>
