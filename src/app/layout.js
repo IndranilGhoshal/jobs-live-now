@@ -202,12 +202,6 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
 
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
-          crossOrigin="anonymous"
-        ></script>
-
         <Script
           id="schema-org"
           type="application/ld+json"
@@ -216,6 +210,12 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(structuredData),
           }}
         />
+
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
+          crossOrigin="anonymous"
+        ></script>
       </head>
 
       <body cz-shortcut-listen="true">

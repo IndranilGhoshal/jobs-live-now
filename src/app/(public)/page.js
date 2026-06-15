@@ -199,7 +199,7 @@ export default async function Page() {
                     <div className="col-md-12">
                         <SocialJoinLink />
                     </div>
-                    {/* 🔥 ADS (Homepage Top Jobs List niche) */}
+                    {/* 🔥 Display ADS TOP */}
                     <div style={{ margin: "15px 0" }}>
                         <ins
                             className="adsbygoogle"
@@ -294,10 +294,10 @@ export default async function Page() {
                             </ul>
                         </div>
                     </div>
-                    
-                    {/* 🔥 ADS (Homepage Middle Jobs List niche) */}
+
+                    {/* 🔥 Multiplex ADS */}
                     <div style={{ margin: "15px 0" }}>
-                        <ins 
+                        <ins
                             className="adsbygoogle"
                             style={{ display: "block" }}
                             data-ad-format="autorelaxed"
@@ -335,6 +335,25 @@ export default async function Page() {
                             <li>Upload correct photo & signature</li>
                             <li>Keep a copy of submitted form</li>
                         </ul>
+
+                        {/* 🔥 In Article ADS 1 */}
+                        <div style={{ margin: "15px 0" }}>
+                            <ins
+                                className="adsbygoogle"
+                                style={{ display: "block", textAlign:"center" }}
+                                data-ad-layout="in-article"
+                                data-ad-format="fluid"
+                                data-ad-client="ca-pub-1574872040858425"
+                                data-ad-slot="2543612285"
+                                data-full-width-responsive="true"
+                            />
+                            <Script
+                                dangerouslySetInnerHTML={{
+                                    __html:
+                                        "(adsbygoogle = window.adsbygoogle || []).push({});",
+                                }}
+                            />
+                        </div>
 
                         <h2>Major Jobs Categories</h2>
 
@@ -379,6 +398,25 @@ export default async function Page() {
                             <li>Admission Forms</li>
                         </ul>
 
+                        {/* 🔥 In Article ADS 2 */}
+                        <div style={{ margin: "15px 0" }}>
+                            <ins
+                                className="adsbygoogle"
+                                style={{ display: "block", textAlign:"center" }}
+                                data-ad-layout="in-article"
+                                data-ad-format="fluid"
+                                data-ad-client="ca-pub-1574872040858425"
+                                data-ad-slot="5747484419"
+                                data-full-width-responsive="true"
+                            />
+                            <Script
+                                dangerouslySetInnerHTML={{
+                                    __html:
+                                        "(adsbygoogle = window.adsbygoogle || []).push({});",
+                                }}
+                            />
+                        </div>
+
                         <h2>Important Advice</h2>
                         <p>Always read the official notification carefully before applying. Ensure all details match your certificates to avoid rejection.</p>
 
@@ -388,6 +426,24 @@ export default async function Page() {
                     </div>
 
                     <SocialLinks />
+
+                    {/* 🔥 Display ADS BUTTOM */}
+                    <div style={{ margin: "15px 0" }}>
+                        <ins
+                            className="adsbygoogle"
+                            style={{ display: "block" }}
+                            data-ad-client="ca-pub-1574872040858425"
+                            data-ad-slot="8665291797"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"
+                        />
+                        <Script
+                            dangerouslySetInnerHTML={{
+                                __html:
+                                    "(adsbygoogle = window.adsbygoogle || []).push({});",
+                            }}
+                        />
+                    </div>
 
                 </div>
 
