@@ -210,6 +210,13 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(structuredData),
           }}
         />
+
+        <Script 
+        async 
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
+        crossOrigin="anonymous" 
+        />
+        
       </head>
 
       <body cz-shortcut-listen="true">
