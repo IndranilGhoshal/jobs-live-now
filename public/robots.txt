@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Disallow: /admin-x9k2m-secure
+Disallow: /api
+
+Sitemap: https://www.jobslivenow.in/sitemap.xml
