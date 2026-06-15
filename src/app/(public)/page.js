@@ -2,6 +2,7 @@ import Link from "next/link";
 import SocialLinks from "../_component/SocialLinks";
 import SocialJoinLink from "../_component/SocialJoinLink";
 import { title, url, year } from "../utils/common-text";
+import Script from "next/script";
 
 export const dynamic = "force-dynamic";
 
@@ -198,10 +199,27 @@ export default async function Page() {
                     <div className="col-md-12">
                         <SocialJoinLink />
                     </div>
+                    {/* 🔥 ADS (Homepage Top Jobs List niche) */}
+                    <div style={{ margin: "15px 0" }}>
+                        <ins
+                            className="adsbygoogle"
+                            style={{ display: "block" }}
+                            data-ad-client="ca-pub-1574872040858425"
+                            data-ad-slot="2998073706"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"
+                        />
+                        <Script
+                            dangerouslySetInnerHTML={{
+                                __html:
+                                    "(adsbygoogle = window.adsbygoogle || []).push({});",
+                            }}
+                        />
+                    </div>
 
+                    {/* Job list Cards */}
                     <div className="col-md-9">
                         <div className="row">
-
                             {/* ================= TOP ONLINE FORM ================= */}
                             <RenderList
                                 title="Top Online Form"
@@ -276,7 +294,24 @@ export default async function Page() {
                             </ul>
                         </div>
                     </div>
-
+                    
+                    {/* 🔥 ADS (Homepage Middle Jobs List niche) */}
+                    <div style={{ margin: "15px 0" }}>
+                        <ins 
+                            className="adsbygoogle"
+                            style={{ display: "block" }}
+                            data-ad-format="autorelaxed"
+                            data-ad-client="ca-pub-1574872040858425"
+                            data-ad-slot="7471629622"
+                            data-full-width-responsive="true"
+                        />
+                        <Script
+                            dangerouslySetInnerHTML={{
+                                __html:
+                                    "(adsbygoogle = window.adsbygoogle || []).push({});",
+                            }}
+                        />
+                    </div>
                     <div className='col-md-12 mt-3 impt-txt'>
                         <h1>{title}: {year}</h1>
                         <p><strong>{title}</strong> is a dedicated portal for official government job notifications, results, admit cards, answer keys, and exam updates. Here you can easily access all updates related to SSC, Banking, Railway, UPSC, Police, Defence and other government jobs.</p>
