@@ -211,12 +211,13 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        <Script 
-        async 
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
-        crossOrigin="anonymous" 
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
-        
+
       </head>
 
       <body cz-shortcut-listen="true">
