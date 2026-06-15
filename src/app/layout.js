@@ -1,3 +1,4 @@
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
@@ -6,6 +7,7 @@ import RouteLoader from "./_component/RouteLoader";
 import NoInternet from "./_component/NoInternet";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import GoogleAdSense from "./utils/GoogleAdSense";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -211,14 +213,12 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
-          crossOrigin="anonymous"
-        ></script>
       </head>
 
-      <body cz-shortcut-listen="true">
+      <body>
+
+        <GoogleAdSense />
+
         <NoInternet>
           <LoaderProvider>
             <RouteLoader />
