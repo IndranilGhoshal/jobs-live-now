@@ -195,12 +195,18 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
+
         <link
           rel="preconnect"
           href="https://cdn.jsdelivr.net"
           crossOrigin="anonymous"
         />
 
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
+          crossOrigin="anonymous"
+        ></script>
 
         <Script
           id="schema-org"
@@ -210,14 +216,6 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(structuredData),
           }}
         />
-
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1574872040858425"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-
       </head>
 
       <body cz-shortcut-listen="true">
