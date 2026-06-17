@@ -12,6 +12,26 @@ export async function GET() {
     </sitemap>
 
     <sitemap>
+        <loc>https://www.jobslivenow.in/sitemap-admission.xml</loc>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://www.jobslivenow.in/sitemap-admit-card.xml</loc>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://www.jobslivenow.in/sitemap-answer-key.xml</loc>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://www.jobslivenow.in/sitemap-results.xml</loc>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://www.jobslivenow.in/sitemap-syllabus.xml</loc>
+    </sitemap>
+
+    <sitemap>
         <loc>https://www.jobslivenow.in/sitemap-tools.xml</loc>
     </sitemap>
 

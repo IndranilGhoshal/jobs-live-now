@@ -37,7 +37,27 @@ export async function POST(req) {
                 success = false
                 message = "Job Category not found"
             }
-        } else if (payload.details) {
+        } else if (payload.sitemap) {
+            let jobs = await JobSchema.find({
+                category: payload.category,
+                status: "0",
+            })
+                .select("slug updatedAt")
+                .sort({ updatedAt: -1 })
+                .lean();
+            if (jobs) {
+                result = jobs
+                responsestatus = StatusCodes.SUCCESS
+                success = true
+                message = "Data found"
+            } else {
+                result = []
+                responsestatus = StatusCodes.NO_CONTENT
+                success = false
+                message = "Data not found"
+            }
+        }
+        else if (payload.details) {
             filter = { slug: payload.slug, status: { $in: ['0'] } }
             result = await JobCategorySchema.findOne(filter);
             if (result) {

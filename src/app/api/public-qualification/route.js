@@ -19,21 +19,13 @@ export async function POST(req) {
         if (payload.list) {
             filter = {
                 fields: {
-
                     $elemMatch: {
-
                         fieldName: "Tags",
-
                         "value.value": {
-
                             $regex: `^${payload.tag}$`,
-
-                            $options: "i",
-
+                            $options: "i"
                         },
-
                     },
-
                 }, category: { $in: ['Jobs'] } , status: { $in: ['0', '1'] }
             };
             let len = await JobCategorySchema.find(filter)

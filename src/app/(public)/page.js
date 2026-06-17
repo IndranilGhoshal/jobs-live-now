@@ -60,7 +60,6 @@ export default async function Page() {
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/public-index`,
             {
                 method: "POST",
-                cache: "no-store",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -71,12 +70,17 @@ export default async function Page() {
             }
         );
         response = await res.json();
+
+        
+        
     } catch (error) {
         console.error("API Error:", error);
         response = [];
     }
 
     const data = response?.data || {};
+
+    
 
     const topOnlineForm =
         data?.topOnlineForm || [];
@@ -95,6 +99,10 @@ export default async function Page() {
 
     const admissionFormData =
         data?.admissionForm || [];
+
+    const byqualification = data?.byqualification || [];
+
+    // console.log("response",byqualification);
 
     // ================= COMMON COMPONENT =================
     const RenderList = ({
@@ -282,15 +290,14 @@ export default async function Page() {
                         </div>
 
                         <div className="sidebar quck-lnk mt-3">
-                            <h6>Qulification Jobs</h6>
+                            <h6> Job by Qulifications</h6>
                             <ul>
-                                <li><Link href={`/qualification/10th`}>10th Pass Jobs</Link></li>
-                                <li><Link href={`/qualification/ITI`}>ITI Pass Jobs</Link></li>
-                                <li><Link href={`/qualification/12th`}>12th Pass Jobs</Link></li>
-                                <li><Link href={`/qualification/Diploma`}>Diploma Pass Jobs</Link></li>
-                                <li><Link href={`/qualification/Graduation`}>Graduation Pass Jobs</Link></li>
-                                <li><Link href={`/qualification/Post-Graduation`}>Post Graduation Pass Jobs</Link></li>
-                                <li><Link href={`/qualification/Phd`}>Phd Pass Jobs</Link></li>
+                                {
+                                    byqualification.map((item,i)=>(
+                                        <li key={i}><Link href={item.path}>{item.name +" ("+item.count+")"}</Link></li>
+                                    ))
+                                }
+                                
                             </ul>
                         </div>
                     </div>
