@@ -10,11 +10,12 @@ export async function GET() {
         },
         body: JSON.stringify({
             sitemap: true,
-            category: "Admission Form"
+            category: "Admit Card"
         }),
     });
 
     const data = await res.json();
+
     const jobs = data?.data || [];
 
     const urls = jobs

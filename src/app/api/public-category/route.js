@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { StatusCodes } from "../_lib/StatusCode";
 import { connectionStr } from "@/app/lib/db";
 import { JobCategorySchema } from "@/app/model/categories";
+import { JobSchema } from "@/app/model/Job";
 
 export async function POST(req) {
     try {
@@ -39,7 +40,7 @@ export async function POST(req) {
             }
         } else if (payload.sitemap) {
             let jobs = await JobSchema.find({
-                category: { $in: [payload.category] },
+                category: payload.category,
                 status: "0",
             })
                 .select("slug updatedAt")
