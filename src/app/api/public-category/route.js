@@ -39,7 +39,7 @@ export async function POST(req) {
             }
         } else if (payload.sitemap) {
             let jobs = await JobSchema.find({
-                category: payload.category,
+                category: { $in: [payload.category] },
                 status: "0",
             })
                 .select("slug updatedAt")
