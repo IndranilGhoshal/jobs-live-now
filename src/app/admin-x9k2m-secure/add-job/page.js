@@ -416,6 +416,7 @@ export default function Page() {
                                                             value={item.value}
                                                             onChange={(data) => handleChange(i, data)}
                                                             error={errors[i]}
+                                                            editortype = "add-job"
                                                         />
                                                     )}
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Editor from "@/app/_component/Editor";
 import React, {
   useEffect,
   useState,
@@ -8,8 +9,9 @@ import toast from "react-hot-toast";
 
 export default function Page() {
 
-  const [marqueeText, setMarqueeText] =useState("");
-  const [marqueeId, setMarqueeId] =useState("");
+  const [marqueeText, setMarqueeText] = useState("");
+  const [marqueeId, setMarqueeId] = useState("");
+  const [errors, setErrors] = useState("");
 
   const [loading, setLoading] =
     useState(false);
@@ -37,7 +39,7 @@ export default function Page() {
       if (data.success) {
         setMarqueeText(data?.data?.marquee || "");
         setMarqueeId(data?.data?._id || "")
-      }else{
+      } else {
         setMarqueeText("");
         setMarqueeId("")
       }
@@ -123,68 +125,81 @@ export default function Page() {
     fetchMarquee();
   }, []);
 
+  const validateSingleField = (value) => {
+    if (!value || value.trim() === "") {
+      return `Marquee text is required`;
+    }else{
+      return "";
+    }
+  };
+
+  const handleChange = (value) => {
+    setMarqueeText(value);
+    // // 🔥 REAL-TIME VALIDATION
+    const errorMsg = validateSingleField(value);
+    setErrors(errorMsg);
+  };
+
   return (
 
-    <>
+    <div className="marquee-page">
 
-      <div className="marquee-form-container">
+      <div className="marquee-header">
+        <div className="title-wrapper">
+          <div className="title-icon">
+            <i className="fa-solid fa-bullhorn"></i>
+          </div>
 
-        <h2>
-          📄 Highlight Marquee
-        </h2>
+          <div>
+            <h2>Highlight Marquee</h2>
+            <p>Manage all important announcements and updates</p>
+          </div>
+        </div>
+      </div>
 
-        <input
+      <div className="marquee-container">
 
-          placeholder="Enter marquee text..."
+        <div>
+          <Editor
+            value={marqueeText}
+            onChange={(data) => handleChange(data)}
+            error={errors}
+            editortype="normal"
+          />
 
-          value={marqueeText}
+          { errors && <div className="error-text">{errors}</div>}
+        </div>
 
-          onChange={(e) =>
-            setMarqueeText(
-              e.target.value
-            )
-          }
-
-        />
+        
 
         {
-         marqueeId == '' || marqueeText == '' ?
+          marqueeId == '' || marqueeText == '' ?
             <button
-
               onClick={saveMarquee}
-
-              disabled={loading}
-
+              disabled={marqueeText == ""}
             >
-
               {
                 loading
                   ? "Saving..."
                   : "Save"
               }
-
             </button>
             :
             <button
-
               onClick={editMarquee}
-
-              disabled={loading}
-
+              disabled={marqueeText == ""}
             >
-
               {
                 loading
                   ? "Saving..."
                   : "Edit"
               }
-
             </button>
         }
 
       </div>
 
-    </>
+    </div>
 
   );
 

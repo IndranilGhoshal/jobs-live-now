@@ -506,6 +506,7 @@ export default function Page() {
                                                                 handleChange(i, data)
                                                             }
                                                             error={errors[i]}
+                                                            editortype = "edit-job"
                                                         />
 
                                                     )}

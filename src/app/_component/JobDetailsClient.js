@@ -170,7 +170,7 @@ export default function JobDetailsClient({ job }) {
 
                         <ol className="breadcrumb mb-0">
 
-                            <li className="breadcrumb-item">
+                            <li className="breadcrumb-item cp">
                                 <Link href="/">
                                     Home
                                 </Link>
@@ -179,7 +179,7 @@ export default function JobDetailsClient({ job }) {
                             {
                                 category == "Jobs" ?
                                     <>
-                                        <li className="breadcrumb-item">
+                                        <li className="breadcrumb-item cp">
                                             <Link href="/top-online-form">
                                                 Top Online Form
                                             </Link>

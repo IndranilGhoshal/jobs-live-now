@@ -477,10 +477,6 @@
     }
 }
 
-.marquee-form-container {
-    padding: 15px 20px;
-}
-
 .job-page.job-lst {
     padding: 15px 20px;
 }
@@ -1154,8 +1150,29 @@ footer {
     margin-bottom: 20px;
 }
 
-/* TABLE CONTAINER */
-.table-container {
+.marquee-page{
+    padding: 15px 20px;
+}
+
+.marquee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.marquee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 20px 24px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.marquee-container {
     background: #fff;
     padding: 15px;
     border-radius: 10px;
@@ -1163,12 +1180,38 @@ footer {
     overflow-x: auto;
 }
 
+.marquee-container button {
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    transition: all .3s;
+    margin-top: 20px;
+}
+.marquee-container button:disabled {
+    color: #000;
+    cursor: pointer;
+    background: linear-gradient(90deg, #bdc0c1, #a8abaf);
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    transition: all .3s;
+    margin-top: 20px;
+}
+
+
 /* TABLE CONTAINER */
 .table-container {
     background: #fff;
-    padding: 18px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     overflow-x: auto;
 }
 
@@ -1482,6 +1525,7 @@ footer {
 }
 
 /* ERROR */
+.marquee-container .error-text,
 .job-form-container .error-text {
     color: red;
     font-size: 12px;
@@ -1707,32 +1751,6 @@ footer {
     margin-top: 8px;
     color: #6b7280;
 }
-
-.marquee-form-container input {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    transition: all .3s;
-    margin-top: 20px;
-}
-
-.marquee-form-container button {
-    color: #fff;
-    cursor: pointer;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    border: none;
-    border-radius: 10px;
-    width: 100%;
-    padding: 12px;
-    font-size: 15px;
-    transition: all .3s;
-    margin-top: 20px;
-}
-
-
-
 
 
 /* ================= DESKTOP ================= */

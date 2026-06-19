@@ -10,13 +10,13 @@ import Link from 'next/link';
 import { usePathname } from "next/navigation";
 import { title } from "../utils/common-text";
 
-export default function PublicHeader({menus, marquees}) {
+export default function PublicHeader({ menus, marquees }) {
     const menu = menus ? JSON.parse(menus) : null;
     const marquee = marquees ? JSON.parse(marquees) : null;
     const pathname = usePathname();
 
 
-    const onnavremoveclass = () =>{
+    const onnavremoveclass = () => {
         const element = document.getElementById("nav");
         element.classList.remove("show");
         const elem = document.getElementById('nav-responsive-button');
@@ -77,12 +77,16 @@ export default function PublicHeader({menus, marquees}) {
                                 <ul className="navbar-nav mx-auto">
                                     {
                                         menu.map((item, i) => (
-                                            <li key={i} className="nav-item" onClick={()=>{onnavremoveclass()}}>
+                                            <li key={i} className="nav-item" onClick={() => { onnavremoveclass() }}>
                                                 <Link
                                                     href={item.path}
                                                     className={`nav-link ${pathname === item.path ? "active-nav" : ""}`}
                                                 >
-                                                    {item.icon+" "+item.menu}
+                                                    {/* FOR MOBILE & Desktop */}
+                                                    <div className="show-div">{item.icon + " " + item.menu}</div>
+
+                                                    {/* FOR TAB */}
+                                                    <div className="show-div-for-tab navbtn"><div className="navbtnicon">{item.icon}</div><div className="navbtntext">{item.menu}</div></div>
                                                 </Link>
                                             </li>
                                         ))
@@ -107,7 +111,11 @@ export default function PublicHeader({menus, marquees}) {
                             className="breaking"
                         >
 
-                            {marquee}
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: marquee,
+                                }}
+                            />
 
                         </Marquee>
 
