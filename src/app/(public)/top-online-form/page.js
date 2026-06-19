@@ -148,7 +148,7 @@ export default async function page() {
                       >
                         <Link href={`/${item.slug}`}>
                           <>
-                            <div className="topdvi">{i + 1}.<div className="mx-1">{item.name}</div></div>
+                            <div>{item.name}</div>
                             <p>Last Date: {getLastDate(item.fields)}</p>
                           </>
                         </Link>
@@ -197,7 +197,7 @@ export default async function page() {
                           >
                             <Link href={`/${item.slug}`}>
                               <>
-                                {i + 1}. {item.name}
+                                {item.name}
                               </>
                             </Link>
                           </li>
@@ -261,7 +261,7 @@ export default async function page() {
                           >
                             <Link href={`/${item.slug}`}>
                               <>
-                                {i + 1}. {item.name}
+                                {item.name}
                               </>
                             </Link>
                           </li>
@@ -324,7 +324,7 @@ export default async function page() {
                           >
                             <Link href={`/${item.slug}`}>
                               <>
-                                {i + 1}. {item.name}
+                                {item.name}
                               </>
                             </Link>
                           </li>

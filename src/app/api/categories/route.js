@@ -7,7 +7,7 @@ import { JobCategorySchema } from "@/app/model/categories";
 // ================= POST =================
 export async function POST(req) {
     try {
-       
+
         const payload = await req.json();
         let result;
         let success = false;
@@ -159,10 +159,22 @@ export async function POST(req) {
             }
         }
         else if (payload.list) {
-            filter = { category: { $in: ['Admit Card','Results', 'Answer Key', 'Syllabus', 'Admission Form'] } , status: { $in: ['0', '1'] } };
-            let len = await JobCategorySchema.find(filter)
-            listlength = len.length
-            result = await JobCategorySchema.find(filter).limit(payload.limit).skip(payload.skip);
+            filter = { category: { $in: ['Admit Card', 'Results', 'Answer Key', 'Syllabus', 'Admission Form'] }, status: { $in: ['0', '1'] } };
+
+            // 🔍 Search filter
+            if (payload.search?.trim()) {
+                filter["fields.value"] = {
+                    $regex: payload.search.trim(),
+                    $options: "i"
+                };
+            }
+
+            listlength = await JobCategorySchema.countDocuments(filter);
+
+            result = await JobCategorySchema.find(filter)
+                .limit(Number(payload.limit))
+                .skip(Number(payload.skip));
+
             if (result.length > 0) {
                 responsestatus = StatusCodes.SUCCESS
                 success = true

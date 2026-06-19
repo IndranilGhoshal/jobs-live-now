@@ -79,26 +79,17 @@ export default async function Page() {
     }
 
     const data = response?.data || {};
+    const topOnlineForm = data?.topOnlineForm || [];
 
-    
+    const admitCardData = data?.admitCard || [];
 
-    const topOnlineForm =
-        data?.topOnlineForm || [];
+    const resultData = data?.results || [];
 
-    const admitCardData =
-        data?.admitCard || [];
+    const answerKeyData = data?.answerKey || [];
 
-    const resultData =
-        data?.results || [];
+    const syllabusData = data?.syllabus || [];
 
-    const answerKeyData =
-        data?.answerKey || [];
-
-    const syllabusData =
-        data?.syllabus || [];
-
-    const admissionFormData =
-        data?.admissionForm || [];
+    const admissionFormData = data?.admissionForm || [];
 
     const byqualification = data?.byqualification || [];
 
@@ -208,7 +199,8 @@ export default async function Page() {
                         <SocialJoinLink />
                     </div>
                     {/* 🔥 Display ADS TOP */}
-                    <div style={{ margin: "15px 0" }}>
+                    <div className="advt-bdr">
+                        <div className="ad-title">Advertisement</div>
                         <ins
                             className="adsbygoogle"
                             style={{ display: "block" }}
@@ -294,7 +286,7 @@ export default async function Page() {
                             <ul>
                                 {
                                     byqualification.map((item,i)=>(
-                                        <li key={i}><Link href={item.path}>{item.name +" ("+item.count+")"}</Link></li>
+                                        <li key={i}><Link href={item.path}>{item.name +" Pass ("+item.count+")"}</Link></li>
                                     ))
                                 }
                                 
@@ -303,7 +295,8 @@ export default async function Page() {
                     </div>
 
                     {/* 🔥 Multiplex ADS */}
-                    <div style={{ margin: "15px 0" }}>
+                    <div className="advt-bdr">
+                        <div className="ad-title">Advertisement</div>
                         <ins
                             className="adsbygoogle"
                             style={{ display: "block" }}
@@ -344,7 +337,8 @@ export default async function Page() {
                         </ul>
 
                         {/* 🔥 In Article ADS 1 */}
-                        <div style={{ margin: "15px 0" }}>
+                        <div className="advt-bdr">
+                            <div className="ad-title">Advertisement</div>
                             <ins
                                 className="adsbygoogle"
                                 style={{ display: "block", textAlign:"center" }}
@@ -406,7 +400,8 @@ export default async function Page() {
                         </ul>
 
                         {/* 🔥 In Article ADS 2 */}
-                        <div style={{ margin: "15px 0" }}>
+                        <div className="advt-bdr">
+                            <div className="ad-title">Advertisement</div>
                             <ins
                                 className="adsbygoogle"
                                 style={{ display: "block", textAlign:"center" }}
@@ -432,10 +427,9 @@ export default async function Page() {
 
                     </div>
 
-                    <SocialLinks />
-
                     {/* 🔥 Display ADS BUTTOM */}
-                    <div style={{ margin: "15px 0" }}>
+                    <div className="advt-bdr">
+                        <div className="ad-title">Advertisement</div>
                         <ins
                             className="adsbygoogle"
                             style={{ display: "block" }}
@@ -451,6 +445,8 @@ export default async function Page() {
                             }}
                         />
                     </div>
+
+                    <SocialLinks />
 
                 </div>
 

@@ -7,7 +7,6 @@ import { JobCategorySchema } from "@/app/model/categories";
 // ================= POST =================
 export async function POST(req) {
     try {
-
         const payload = await req.json();
         let result;
         let success = false;
@@ -26,11 +25,14 @@ export async function POST(req) {
                             $options: "i"
                         },
                     },
-                }, category: { $in: ['Jobs'] } , status: { $in: ['0', '1'] }
+                }, category: { $in: ['Jobs'] }, status: { $in: ['0'] }
             };
-            let len = await JobCategorySchema.find(filter)
-            listlength = len.length
-            result = await JobCategorySchema.find(filter).limit(payload.limit).skip(payload.skip);
+            listlength = await JobCategorySchema.countDocuments(filter);
+
+            result = await JobCategorySchema.find(filter)
+                .sort({ createdAt: -1 })
+                .limit(Number(payload.limit))
+                .skip(Number(payload.skip));
             if (result.length > 0) {
                 responsestatus = StatusCodes.SUCCESS
                 success = true

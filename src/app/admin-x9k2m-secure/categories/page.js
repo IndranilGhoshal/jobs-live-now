@@ -20,31 +20,31 @@ export default function Page() {
     // 🔥 pagination state
     const [limit, setlimit] = useState('10')
     const [page, setPage] = useState(0)
-    const [offset, setoffset] = useState('0')
+    const [currentPage, setCurrentPage] = useState(1)
+    const [search, setSearch] = useState("");
 
     // ================= FETCH API =================
     useEffect(() => {
-        fetchJobs(limit, offset);
-    }, [limit, offset]);
+        fetchJobs(currentPage);
+    }, [currentPage]);
 
-    const fetchJobs = async (l, s) => {
+    const fetchJobs = async (pageNumber, searchText = search) => {
         try {
             setLoading(true);
             setJobs([])
+            const skip = (pageNumber - 1) * limit;
             const res = await fetch("/api/categories", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ limit: l, skip: s, list: true })
+                body: JSON.stringify({ limit, skip, search: searchText, list: true })
             });
 
             const data = await res.json();
             if (data.success) {
                 let totalPage = Math.ceil(data.listlength / limit);
                 setPage(totalPage);
-
-                // 🔥 IMPORTANT: map API data → table format
                 const formatted = data.data.map((item) => {
                     const titleField = item.fields.find(f => f.fieldName == "Job Advertisement Title");
                     const orgField = item.fields.find(f => f.fieldName == "Organisation Name");
@@ -69,10 +69,16 @@ export default function Page() {
         }
     };
 
+    const handleSearch = (e) => {
+        const value = e.target.value;
+        setSearch(value);
+        setCurrentPage(1);
+        fetchJobs(1, value);
+    };
+
     // ================= PAGINATION =================
-    const handleChangePage = (e, val) => {
-        let offeset = (val - 1) * limit;
-        setoffset(offeset);
+    const handleChangePage = (event, value) => {
+        setCurrentPage(value);
     };
 
     // ================= OPEN DELETE POPUP =================
@@ -100,27 +106,17 @@ export default function Page() {
                 },
                 body: JSON.stringify({ id: deleteId, status: "2", onstatus: true, })
             });
-
             const data = await res.json();
-
             if (data.success) {
-
                 toast.success(data.message);
-
-                // 🔥 REMOVE FROM STATE
-                fetchJobs(limit, offset);
-
+                fetchJobs(currentPage);
                 closeDeletePopup();
-
             } else {
                 toast.error(data.message);
             }
-
         } catch (err) {
-
             toast.error("Delete failed");
             console.log(err);
-
         } finally {
             setDeleteLoading(false);
         }
@@ -136,7 +132,30 @@ export default function Page() {
 
             {/* HEADER */}
             <div className="job-header">
-                <h2>📄 Categories List</h2>
+                <div className="title-wrapper">
+                    <div className="title-icon">
+                        <i className="fa-solid fa-briefcase"></i>
+                    </div>
+
+                    <div>
+                        <h2>Categories List</h2>
+                        <p>Manage all published categories posts</p>
+                    </div>
+                </div>
+
+                <div className="table-header">
+                    <div className="search-box">
+                        <i className="fa-solid fa-magnifying-glass search-icon"></i>
+
+                        <input
+                            type="text"
+                            placeholder="Search by job title or organisation..."
+                            value={search}
+                            onChange={handleSearch}
+                            className="search-input"
+                        />
+                    </div>
+                </div>
 
                 <div className="fab-container">
                     <span className="fab-text">Add Categories</span>
@@ -241,7 +260,7 @@ export default function Page() {
                 </table>
 
                 {/* ================= PAGINATION ================= */}
-                {!loading && jobs.length > 0 && <UsePagination handleChangePage={handleChangePage} page={page} />}
+                {!loading && jobs.length > 0 && <UsePagination handleChangePage={handleChangePage} page={page} currentPage={currentPage} />}
 
             </div>
 

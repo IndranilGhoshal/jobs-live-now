@@ -129,7 +129,7 @@ export default async function Page({ params }) {
                                                 href={`/${item.slug}`}
                                             >
                                                 <>
-                                                    <div className="topdvi">{i + 1}.<div className="mx-1">{item.name}</div></div>
+                                                    <div>{item.name}</div>
                                                 </>
                                             </Link>
 

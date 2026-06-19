@@ -85,7 +85,7 @@ export async function POST(req) {
                     count: countMap("Graduation") || 0
                 },
                 {
-                    name: "Post-Graduation",
+                    name: "Post Graduation",
                     path: "/qualification/Post-Graduation",
                     count: countMap("Post-Graduation") || 0
                 },

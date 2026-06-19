@@ -897,7 +897,6 @@ figure.table th {
 
 .job-dtl .card-box ul li p {
     font-size: 14px;
-    margin-left: 16px;
     font-weight: 300;
     color: lightslategray;
     margin-bottom: 0;
@@ -905,9 +904,43 @@ figure.table th {
 
 .card-box a {
     text-decoration: none;
+    color: #0d47a1;
+}
+
+.breadcrumb-item.cp a{
+    color: #0d47a1;
+}
+
+.breadcrumb-item.active a{
+    color: gray;
 }
 
 
+/* Advt */
+
+.advt-bdr{
+    margin: 15px auto;
+    height: auto !important;
+    min-height: 0px !important;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px 0;
+    padding-top: 13px;
+    padding-bottom: 15px;
+}
+
+.ad-title {
+    color: #191701;
+    white-space: nowrap;
+    background-color: #fff;
+    padding: 0 5px;
+    font-size: 12px;
+    top: -23px !important;
+    position: relative;
+    width: max-content;
+    text-align: center;
+    margin: auto;
+}
 
 /* ================= SKELETON ================= */
 
