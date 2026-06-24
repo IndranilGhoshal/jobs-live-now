@@ -213,6 +213,8 @@ export default function RootLayout({ children }) {
           }}
         />
 
+        <script src="https://quge5.com/88/tag.min.js" data-zone="253219" async data-cfasync="false"></script>
+
       </head>
 
       <body>
