@@ -1,8 +1,3 @@
-/* LOGO STYLE */
-/* .logo-img {
-    height: 45px;
-    width: auto;
-} */
 
 /* TOP HEADER */
 .top-bar {
@@ -64,6 +59,18 @@
     z-index: 9999;
 }
 
+.site-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.site-title-link {
+    color: #fff;
+    text-decoration: none;
+}
+
 /* HEADER */
 
 .sidebar-header {
@@ -77,10 +84,11 @@
 
 /* LOGO */
 
-/* .logo-img {
-    width: 140px;
-    height: auto;
-} */
+.logo-img {
+    border-radius: 10px;
+    width: 70%;
+    height: auto !important;
+}
 
 /* CLOSE BUTTON */
 

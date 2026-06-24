@@ -2,12 +2,16 @@
 import React from 'react'
 import Image from "next/image";
 import logo from "../../../public/images/logo.png";
+import { title } from '../utils/common-text';
+import Link from 'next/link';
 
 export default function Header() {
     return (
         <>
             <div className="top-bar">
-                JOBS LIVE NOW
+                <h1 className="site-title">
+                    <Link href="/" className="site-title-link">{title.toUpperCase()}</Link>
+                </h1>
             </div>
 
             <nav className="navbar">
