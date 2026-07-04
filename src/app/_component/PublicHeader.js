@@ -9,6 +9,27 @@ import '../../../public/css/public_style.css'
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
 import { title } from "../utils/common-text";
+import { Megaphone } from 'lucide-react';
+import ThemeToggle from "./ThemeToggle";
+import {
+    House,
+    Award,
+    IdCard,
+    ClipboardCheck,
+    BookOpenCheck,
+    GraduationCap,
+    Blocks,
+} from "lucide-react";
+
+const icons = {
+    "house": House,
+    "award": Award,
+    "id-card": IdCard,
+    "clipboard-check": ClipboardCheck,
+    "book-open-check": BookOpenCheck,
+    "graduation-cap": GraduationCap,
+    "blocks": Blocks,
+};
 
 export default function PublicHeader({ menus, marquees }) {
     const menu = menus ? JSON.parse(menus) : null;
@@ -70,29 +91,59 @@ export default function PublicHeader({ menus, marquees }) {
                                 aria-label="Toggle navigation"
                             >
                                 <span className="navbar-toggler-icon"></span>
+
                             </button>
+
 
                             {/* Menu (CENTER) */}
                             <div className="collapse navbar-collapse" id="nav">
                                 <ul className="navbar-nav mx-auto">
                                     {
-                                        menu.map((item, i) => (
-                                            <li key={i} className="nav-item" onClick={() => { onnavremoveclass() }}>
-                                                <Link
-                                                    href={item.path}
-                                                    className={`nav-link ${pathname === item.path ? "active-nav" : ""}`}
-                                                >
-                                                    {/* FOR MOBILE & Desktop */}
-                                                    <div className="show-div">{item.icon + " " + item.menu}</div>
+                                        menu.map((item, i) => {
+                                            const Icon = icons[item.icon];
 
-                                                    {/* FOR TAB */}
-                                                    <div className="show-div-for-tab navbtn"><div className="navbtnicon">{item.icon}</div><div className="navbtntext">{item.menu}</div></div>
-                                                </Link>
-                                            </li>
-                                        ))
+                                            return (
+                                                <li
+                                                    key={i}
+                                                    className="nav-item"
+                                                    onClick={onnavremoveclass}
+                                                >
+                                                    <Link
+                                                        href={item.path}
+                                                        className={`nav-link ${pathname === item.path ? "active-nav" : ""
+                                                            }`}
+                                                    >
+                                                        <div className="show-div">
+                                                            {Icon && <Icon size={20} />}
+                                                            <span>{item.menu}</span>
+                                                        </div>
+
+                                                        <div className="show-div-for-tab navbtn">
+                                                            <div className="navbtnicon">
+                                                                {Icon && <Icon size={20} />}
+                                                            </div>
+
+                                                            <div className="navbtntext">
+                                                                {item.menu}
+                                                            </div>
+                                                        </div>
+                                                    </Link>
+                                                </li>
+                                            );
+                                        })
                                     }
                                 </ul>
+                                {/* Mobile Theme Toggle */}
+                                <div className="mobile-theme-toggle d-lg-none">
+                                    <ThemeToggle mobile />
+                                </div>
                             </div>
+
+                            {/* Desktop Theme Toggle */}
+                            <div className="theme-toggle-wrapper d-none d-lg-flex">
+                                <ThemeToggle />
+                            </div>
+
                         </div>
                     </nav>
 
@@ -101,7 +152,8 @@ export default function PublicHeader({ menus, marquees }) {
                     <div className="breaking-wrapper">
 
                         <span className="breaking-label">
-                            📢 Latest Update
+                            <Megaphone size={18} /> 
+                            <span>Latest Update</span>
                         </span>
 
                         <Marquee

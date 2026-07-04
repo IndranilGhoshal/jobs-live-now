@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import { JobSchema } from "@/app/model/Job";
 import { StatusCodes } from "../_lib/StatusCode";
-import { connectionStr } from "@/app/lib/db";
+import { connectionStr } from "@/app/_lib/db";
 
 // ================= POST =================
 export async function POST(req) {

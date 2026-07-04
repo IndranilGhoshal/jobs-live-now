@@ -1,5 +1,6 @@
 import JobDetailsClient from "@/app/_component/JobDetailsClient";
 import { getJob } from "@/app/utils/getJob";
+import { getRelatedJob } from "@/app/utils/getRelatedJob";
 import { generateJobSchema } from "@/app/utils/jobSchema";
 import { generateSEODescription } from "@/app/utils/seoDescription";
 import { generateJobKeywords } from "@/app/utils/seoKeywords";
@@ -67,6 +68,9 @@ export default async function Page({ params }) {
     const url = `${baseUrl}/${slug}`;
     const data = await getJob(slug);
     const job = data?.data;
+    const category = job?.category;
+    const relatedPosts = await getRelatedJob(slug, category)
+    
     return (
         <>
             {/* 🔥 SEO BOOST: Job Schema */}
@@ -79,7 +83,7 @@ export default async function Page({ params }) {
                 />
             )}
             {/* Page UI */}
-            <JobDetailsClient job={data} />
+            <JobDetailsClient job={data} relatedPost={relatedPosts} slug={slug} />
         </>
     );
 }

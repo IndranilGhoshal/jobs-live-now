@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { AdminSchema } from "@/app/model/Admin";
 import mongoose from "mongoose";
-import { connectionStr } from "@/app/lib/db";
+import { connectionStr } from "@/app/_lib/db";
 
 export async function POST(req) {
   try {

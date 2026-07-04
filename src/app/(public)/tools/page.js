@@ -104,7 +104,7 @@ export default function Page() {
                 <div className="tools-grid mt-4">
 
                     {
-                        tools.map(
+                        tools && tools.map(
                             (tool, index) => (
 
                                 <Link

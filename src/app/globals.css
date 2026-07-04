@@ -418,3 +418,439 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.reading-progress{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:transparent;
+    z-index:9999;
+}
+
+.reading-progress-bar{
+    height:100%;
+    width:0;
+    background: linear-gradient(90deg, #ff6f00, #ff9800);
+    transition:width .1s linear;
+}
+
+@media(max-width:768px){
+
+.reading-progress{
+    height:3px;
+}
+
+}
+
+/* ===========================
+   Scroll Progress Bar
+=========================== */
+
+.progress-bar-scroll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0;
+    background: #2563eb;
+    z-index: 99999;
+    transition: width .1s linear;
+}
+
+/* ===========================
+   Back To Top
+=========================== */
+
+.back-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #2563eb;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(20px);
+
+    transition: all .3s ease;
+
+    z-index: 9999;
+}
+
+.back-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-top.show:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .2);
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 991px) {
+
+    .back-top {
+        width: 46px;
+        height: 46px;
+        right: 16px;
+        bottom: 16px;
+    }
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 768px) {
+
+    .back-top {
+        width: 44px;
+        height: 44px;
+
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .back-top svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .progress-bar-scroll {
+        height: 3px;
+    }
+
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media (max-width: 480px) {
+
+    .back-top {
+        width: 42px;
+        height: 42px;
+
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+
+    .back-top svg {
+        width: 18px;
+        height: 18px;
+    }
+
+}
+
+.theme-toggle-wrapper{
+    display:flex;
+    align-items:center;
+    margin-left:12px;
+}
+
+.theme-toggle{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#f3f4f6;
+    color:#111827;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+    transition:all .3s ease;
+}
+
+
+
+.theme-toggle:hover{
+    background:#e5e7eb;
+}
+
+html.dark .theme-toggle{
+    background:#1f2937;
+    color:#fff;
+}
+
+html.dark .theme-toggle:hover{
+    background:#374151;
+}
+
+
+
+/* Mobile */
+@media (max-width: 991px){
+
+    .theme-toggle-wrapper{
+        display:none;
+    }
+
+}
+
+html.dark body{
+    background:#111827 !important;
+    color:#ffffff !important;
+}
+
+html.dark .public-header{
+    background:#111827;
+}
+
+html.dark .navbar{
+    background:#111827;
+}
+
+html.dark .nav-link{
+    color:#f3f4f6;
+}
+
+html.dark .nav-link:hover{
+    color:#60a5fa;
+}
+
+html.dark .card-box{
+    background:#1f2937;
+    color:#fff;
+    border:1px solid #374151;
+}
+
+html.dark footer{
+    background:#0f172a;
+    color:#fff;
+}
+
+html.dark a{
+    color:#93c5fd;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6,
+html.dark p,
+html.dark span,
+html.dark label,
+html.dark li {
+    color: #e5e7eb;
+}
+
+html.dark a {
+    color: #93c5fd;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+    background: #111827;
+    color: #fff;
+    border: 1px solid #374151;
+}
+
+
+/* html.dark section,
+html.dark div,
+html.dark article,
+html.dark aside,
+html.dark main,
+html.dark header,
+html.dark footer,
+html.dark nav {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    border-color: #374151;
+} */
+
+html.dark footer,
+html.dark .footer-bottom,
+html.dark footer p,
+html.dark section,
+html.dark nav{
+    background-color: #1f2937;
+    color: #e5e7eb;
+    border-color: #374151;
+}
+
+html.dark .faq-section{
+    color: #fff;
+    border: 1px solid #fff;
+    background: #1f2937 !important;
+    padding: 10px;
+    border-radius: 10px;
+}
+html.dark .about-category,
+html.dark .related-post-links a,
+html.dark .popular-searches,
+html.dark .popular-links a,
+html.dark .category-links li a,
+html.dark .explore-category-box,
+html.dark .editorial-points li,
+html.dark .editorial-header span.sub,
+html.dark .editorial-box,
+html.dark .job-dtl .card-box,
+html.dark .benefit-card,
+html.dark .apply-step,
+html.dark .apply-guide-box,
+html.dark .official-sources-box,
+html.dark .source-card,
+html.dark .govt-jobs-section,
+html.dark .new-badge, 
+html.dark .today-badge,
+html.dark .job-card,
+html.dark .card-box.online-form.mg-lst,
+html.dark .job-dtl .card-box h5,
+html.dark button.filter-btn,
+html.dark .breadcrumb-box,
+html.dark .update-box,
+html.dark .featured-form,
+html.dark .trust-badges span,
+html.dark .hero-stat-item,
+html.dark .hero-features li,
+html.dark .social-links-box,
+html.dark .social-links-box span.social-badge,
+html.dark .social-btn,
+html.dark .explore-category-box .category-links a:hover,
+html.dark .idx-pg .card-box .hero-features li,
+html.dark .idx-pg .card-box h5,
+html.dark .back-top,
+html.dark .index-share-box .whatsapp,
+html.dark .hero-buttons a {
+    color: #fff;
+    border: 1px solid #fff;
+    background: #1f2937 !important;
+}
+
+html.dark .editorial-points li svg,
+html.dark .trust-badges.caty span svg,
+html.dark .job-dtl .card-box a,
+html.dark .source-card a svg,
+html.dark .source-card a h4,
+html.dark .source-card a p,
+html.dark .status-div strong,
+html.dark .breadcrumb-box .breadcrumb-item a,
+html.dark .breadcrumb-box .breadcrumb-item.active,
+html.dark .featured-form a,
+html.dark .search-box button,
+html.dark .hero-search button:disabled,
+html.dark .site-title-link,
+html.dark .idx-pg .card-box li,
+html.dark footer a,
+html.dark .page-loader,
+html.dark .hero-stat-item h3 span,
+html.dark .top-bar,
+html.dark .top-sub-bar,
+html.dark .top-sub-bar,
+html.dark .public-header .breaking,
+html.dark .public-header .breaking-label,
+html.dark .breaking-wrapper,
+html.dark .idx-pg .hero-search button,
+html.dark .idx-pg .hero-search button:disabled,
+html.dark .idx-pg .sidebar.quck-lnk,
+html.dark .idx-pg .sidebar.quck-lnk ul li a,
+html.dark .idx-pg .social-links-box,
+html.dark .idx-pg .social-links-box a,
+html.dark .idx-pg .popular-searches a,
+html.dark .idx-pg .popular-searches,
+html.dark .idx-pg .related-categories a,
+html.dark .idx-pg .related-categories,
+html.dark .idx-pg .explore-category-box ul li a,
+html.dark .idx-pg .explore-category-box,
+html.dark .idx-pg .card-box a {
+    color: #fff;
+    background: #1f2937;
+}
+
+html.dark .idx-pg .sidebar.quck-lnk h6{
+    color: #fff;
+    background: #1f2937;
+    border: 1px solid #fff;
+}
+
+html.dark .idx-pg .hero-stats .hero-stat-item{
+    color: #fff;
+    background: #1f2937;
+    border: 1px solid #fff;
+}
+
+html.dark .footer-title {
+ border-left: 4px solid #fff;
+}
+
+
+html.dark .idx-pg .sidebar{
+    border: 1px solid #fff;
+    padding: 19px !important;
+}
+
+html.dark .filter-btn.active{
+    background-color: #fff !important;
+    color: #1f2937;
+}
+
+html.dark .featured-form{
+    box-shadow: none;
+}
+
+html.dark .card-box li:hover{
+    background: #1f2937 !important;
+}
+
+html.dark .about-category h2:after,
+html.dark .job-card:before{
+    background: #fff !important;
+}
+
+html.dark .job-card:hover .job-title{
+    color: #fff;
+}
+html.dark .review-info strong,
+html.dark .pagins nav ul li button{
+    color: #fff !important;
+}
+html.dark .pagins nav{
+    background: #111827 !important;
+}
+
+html.dark .faq-card{
+    border-left: 5px solid #fff !important;
+    color: #fff;
+    border: 1px solid #fff;
+    background: #1f2937 !important;
+}
+
+html.dark .apply-step span{
+    background: #1f2937 !important;
+    color: #fff;
+    border: 1px solid #fff;
+}

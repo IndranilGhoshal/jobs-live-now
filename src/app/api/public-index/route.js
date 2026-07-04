@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import { JobSchema } from "@/app/model/Job";
 import { StatusCodes } from "../_lib/StatusCode";
-import { connectionStr } from "@/app/lib/db";
+import { connectionStr } from "@/app/_lib/db";
 
 export async function POST(req) {
     try {
@@ -20,18 +20,20 @@ export async function POST(req) {
             answerKey,
             syllabus,
             admissionForm,
-            byqualification = []
+            byqualification,
+            byrecruitment,
+            starcard = []
 
         await mongoose.connect(connectionStr);
 
         if (payload.list) {
 
-            topOnlineForm = await JobSchema.find({ category: { $in: ['Jobs'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(4);
-            admitCard = await JobSchema.find({ category: { $in: ['Admit Card'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(4);
-            results = await JobSchema.find({ category: { $in: ['Results'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(4);
-            answerKey = await JobSchema.find({ category: { $in: ['Answer Key'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(4);
-            syllabus = await JobSchema.find({ category: { $in: ['Syllabus'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(4);
-            admissionForm = await JobSchema.find({ category: { $in: ['Admission Form'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(4);
+            topOnlineForm = await JobSchema.find({ category: { $in: ['Jobs'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(8);
+            admitCard = await JobSchema.find({ category: { $in: ['Admit Card'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(8);
+            results = await JobSchema.find({ category: { $in: ['Results'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(8);
+            answerKey = await JobSchema.find({ category: { $in: ['Answer Key'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(8);
+            syllabus = await JobSchema.find({ category: { $in: ['Syllabus'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(8);
+            admissionForm = await JobSchema.find({ category: { $in: ['Admission Form'] }, status: { $in: ['0'] } }).sort({ createdAt: -1 }).limit(8);
 
 
 
@@ -57,6 +59,20 @@ export async function POST(req) {
                 }
                 return count
             }
+
+            const countJobType = (jobType) => {
+                let count = 0;
+
+                for (const q of qualificationCounts) {
+                    const field = q.fields.find(f => f.fieldName === "Job Type");
+
+                    if (field && field.value?.value === jobType) {
+                        count++;
+                    }
+                }
+
+                return count;
+            };
 
             byqualification = [
                 {
@@ -96,6 +112,77 @@ export async function POST(req) {
                 }
             ];
 
+
+            byrecruitment = [
+                {
+                    name: "Government Jobs",
+                    path: "/recruitment/government-job",
+                    count: countJobType("Government Job") || 0
+                },
+                {
+                    name: "UPSC Jobs",
+                    path: "/recruitment/upsc-job",
+                    count: countJobType("UPSC Job") || 0
+                },
+                {
+                    name: "SSC Jobs",
+                    path: "/recruitment/ssc-job",
+                    count: countJobType("SSC Job") || 0
+                },
+                {
+                    name: "Railway Jobs",
+                    path: "/recruitment/railway-job",
+                    count: countJobType("Railway Job") || 0
+                },
+                {
+                    name: "Bank Jobs",
+                    path: "/recruitment/bank-job",
+                    count: countJobType("Bank Job") || 0
+                },
+                {
+                    name: "Defence Jobs",
+                    path: "/recruitment/defence-job",
+                    count: countJobType("Defence Job") || 0
+                },
+                {
+                    name: "Teaching Jobs",
+                    path: "/recruitment/teaching-job",
+                    count: countJobType("Teaching Job") || 0
+                },
+                {
+                    name: "Contractual Jobs",
+                    path: "/recruitment/contractual-job",
+                    count: countJobType("Contractual Job") || 0
+                }
+            ];
+
+            const jobslistlength = await JobSchema.countDocuments({ category: "Jobs", status: "0"});
+            const admitcardslistlength = await JobSchema.countDocuments({ category: "Admit Card", status: "0"});
+            const resultslistlength = await JobSchema.countDocuments({ category: "Results", status: "0"});
+
+            starcard=[
+                {
+                    name: "Government Jobs Covered",
+                    count: Number(jobslistlength) || 0,
+                    suffix:"+"
+                },
+                {
+                    name: "Admit Cards Updated",
+                    count: Number(admitcardslistlength) || 0,
+                    suffix:"+"
+                },
+                {
+                    name: "Results Published",
+                    count: Number(resultslistlength) || 0,
+                    suffix:"+"
+                },
+                {
+                    name: "Official Source Based",
+                    count: 100,
+                    suffix:"%"
+                }
+            ]
+
             result = {
                 topOnlineForm,
                 admitCard,
@@ -103,9 +190,10 @@ export async function POST(req) {
                 answerKey,
                 syllabus,
                 admissionForm,
-                byqualification
+                byqualification,
+                byrecruitment,
+                starcard
             }
-
             responsestatus = StatusCodes.SUCCESS
             success = true
             message = "Job found"

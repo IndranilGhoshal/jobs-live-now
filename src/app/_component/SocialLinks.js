@@ -1,47 +1,69 @@
-import Link from 'next/link'
-import React from 'react'
-import { fbpagelink, wpgrouplink, ytlink } from '../utils/common-text'
+import Link from "next/link";
+import { FaWhatsapp, FaFacebookF, FaYoutube } from "react-icons/fa";
+import { fbpagelink, wpgrouplink, ytlink } from "../utils/common-text";
 
 export default function SocialLinks() {
     return (
-        <>
-            {/* ================= SOCIAL LINKS ================= */}
-            <div className="col-md-12 mt-4 text-center">
+        <div className="col-md-12 mt-4">
+            <div className="social-links-box">
 
-                <strong>
-                    Quick Links :
-                </strong>
+                <div className="social-header">
 
-                <div className="mt-2">
+                    <span className="social-badge">
+                        👥 Join Our Community
+                    </span>
+
+                    <h2 className="social-title">
+                        Never Miss a Government Job Update
+                    </h2>
+
+                    <p className="social-subtitle">
+                        Get Daily Government Job Notifications, Online Forms,
+                        Results, Admit Cards, Answer Keys, Syllabus and
+                        Admission Updates directly on your phone.
+                    </p>
+
+                </div>
+
+                <div className="social-buttons">
 
                     <Link
                         href={wpgrouplink}
                         target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-btn whatsapp"
                     >
-                        WhatsApp
+                        <FaWhatsapp size={20} />
+                        <span>Join WhatsApp</span>
                     </Link>
-
-                    {" || "}
 
                     <Link
                         href={fbpagelink}
                         target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-btn facebook"
                     >
-                        Facebook
+                        <FaFacebookF size={18} />
+                        <span>Follow Facebook</span>
                     </Link>
-
-                    {" || "}
 
                     <Link
                         href={ytlink}
                         target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-btn youtube"
                     >
-                        Youtube
+                        <FaYoutube size={20} />
+                        <span>Subscribe on YouTube</span>
                     </Link>
 
                 </div>
-            </div>
 
-        </>
-    )
+                <p className="social-note">
+                    ✅ Free Updates &nbsp;•&nbsp; 🚀 Fast Notifications &nbsp;•&nbsp; 🔔 Never Miss an Important Update
+                </p>
+
+            </div>
+        </div>
+    );
 }

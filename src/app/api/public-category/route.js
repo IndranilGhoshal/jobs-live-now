@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import { StatusCodes } from "../_lib/StatusCode";
-import { connectionStr } from "@/app/lib/db";
+import { connectionStr } from "@/app/_lib/db";
 import { JobCategorySchema } from "@/app/model/categories";
 import { JobSchema } from "@/app/model/Job";
 
@@ -15,6 +15,7 @@ export async function POST(req) {
         let listlength;
         let responsestatus;
         let filter;
+        let starcard = []
 
         await mongoose.connect(connectionStr);
 
@@ -28,8 +29,54 @@ export async function POST(req) {
                     $in: ["0"]
                 }
             };
-            result = await JobCategorySchema.find(filter).sort({ createdAt: -1 }).limit(50);;
-            if (result) {
+            let list = await JobCategorySchema.find(filter).sort({ createdAt: -1 }).limit(Number(payload.limit)).skip(Number(payload.skip));
+
+            listlength = await JobCategorySchema.countDocuments(filter);
+
+            let starcardtitle
+            
+            switch (payload.categoryslag) {
+                case 'results':
+                    starcardtitle = 'Total Results Covered'
+                    break;
+
+                case 'admit-card':
+                    starcardtitle = 'Total Admit Cards Covered'
+                    break;
+
+                case 'answer-key':
+                    starcardtitle = 'Total Answer Keys Covered'
+                    break;
+
+                case 'syllabus':
+                    starcardtitle = 'Total Syllabus Covered'
+                    break;
+
+                case 'admission-form':
+                    starcardtitle = 'Total Admission Form Covered'
+                    break;
+
+                default:
+                    starcardtitle = 'Government Jobs Covered'
+            }
+
+            starcard = [
+                {
+                    name: starcardtitle,
+                    count: Number(listlength) || 0,
+                    suffix: "+"
+                },
+                {
+                    name: "Official Source Based",
+                    count: 100,
+                    suffix: "%"
+                }
+            ]
+            if (list) {
+                result = {
+                    list,
+                    starcard
+                }
                 responsestatus = StatusCodes.SUCCESS
                 success = true
                 message = "Job Category found"

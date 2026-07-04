@@ -4,13 +4,13 @@ export async function GET(request) {
     try {
 
         const menus = [
-            { menu: "Home", path: "/", icon: "🏠" },
-            { menu: "Admit Card", path: "/category/admit-card", icon: "🎫" },
-            { menu: "Results", path: "/category/results", icon: "🏆" },
-            { menu: "Answer Key", path: "/category/answer-key", icon: "📚" },
-            { menu: "Syllabus", path: "/category/syllabus", icon: "🔑" },
-            { menu: "Admission Form", path: "/category/admission-form", icon: "🎓" },
-            { menu: "Online Tools", path: "/tools", icon: "🛠️" },
+            { menu: "Home", path: "/", icon: "house" },
+            { menu: "Results", path: "/category/results", icon: "award" },
+            { menu: "Admit Card", path: "/category/admit-card", icon: "id-card" },
+            { menu: "Answer Key", path: "/category/answer-key", icon: "clipboard-check" },
+            { menu: "Syllabus", path: "/category/syllabus", icon: "book-open-check" },
+            { menu: "Admission Form", path: "/category/admission-form", icon: "graduation-cap" },
+            { menu: "Online Tools", path: "/tools", icon: "blocks" },
         ];
 
         return new Response(

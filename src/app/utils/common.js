@@ -56,17 +56,34 @@ export const slugToTitle = (slug) => {
 };
 
 export function countWords(text) {
-  if (!text) return 0;
+    if (!text) return 0;
 
-  return text
-    .replace(/[^\w\s]/g, "") // punctuation remove
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .length;
+    return text
+        .replace(/[^\w\s]/g, "") // punctuation remove
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .length;
 }
 
 
 export const formatNumber = (num) => {
-  return String(num).padStart(2, "0");
+    return String(num).padStart(2, "0");
+};
+
+export const getCategoryTitle = (slug) => {
+
+    return slug
+        ?.replace(/-/g, " ")
+        ?.replace(/\b\w/g, (c) => c.toUpperCase());
+
+};
+
+// ================= CATEGORY TITLE =================
+export const getQualificationTitle = (slug) => {
+
+    return slug
+        ?.replace(/-/g, " ")
+        ?.replace(/\b\w/g, (c) => c.toUpperCase());
+
 };

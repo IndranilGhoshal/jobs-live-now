@@ -1,5 +1,4 @@
 
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { LoaderProvider } from "./_context/LoaderContext";
@@ -8,18 +7,11 @@ import NoInternet from "./_component/NoInternet";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import GoogleAdSense from "./utils/GoogleAdSense";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  preload: false,
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  preload: false,
-});
+import OrganizationSchema from "./_component/schema/OrganizationSchema";
+import WebsiteSchema from "./_component/schema/WebsiteSchema";
+import ReadingProgress from "./_component/ReadingProgress";
+import BackToTop from "./_component/BackToTop";
+import Providers from "./_component/ThemeProvider";
 
 export const viewport = {
   width: "device-width",
@@ -194,7 +186,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
     >
       <head>
 
@@ -212,21 +204,26 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(structuredData),
           }}
         />
-
-        
-
       </head>
 
       <body>
 
-        <GoogleAdSense />
+        <Providers>
 
-        <NoInternet>
-          <LoaderProvider>
-            <RouteLoader />
-            {children}
-          </LoaderProvider>
-        </NoInternet>
+          <GoogleAdSense />
+
+          <NoInternet>
+            <LoaderProvider>
+              <RouteLoader />
+              <ReadingProgress />
+              {children}
+              <BackToTop />
+              <OrganizationSchema />
+              <WebsiteSchema />
+            </LoaderProvider>
+          </NoInternet>
+
+        </Providers>
 
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
@@ -237,14 +234,14 @@ export default function RootLayout({ children }) {
 
             <Script id="google-analytics" strategy="afterInteractive">
               {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `}
+          gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+            page_path: window.location.pathname,
+          });
+        `}
             </Script>
           </>
         )}
@@ -253,6 +250,7 @@ export default function RootLayout({ children }) {
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           strategy="afterInteractive"
         />
+
       </body>
     </html>
   );

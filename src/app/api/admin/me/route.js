@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
-import { connectionStr } from "@/app/lib/db";
+import { connectionStr } from "@/app/_lib/db";
 import { AdminSchema } from "@/app/model/Admin";
 import { StatusCodes } from "../../_lib/StatusCode";
 

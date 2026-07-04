@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import { StatusCodes } from "../_lib/StatusCode";
-import { connectionStr } from "@/app/lib/db";
+import { connectionStr } from "@/app/_lib/db";
 import { JobCategorySchema } from "@/app/model/categories";
 
 // ================= POST =================
