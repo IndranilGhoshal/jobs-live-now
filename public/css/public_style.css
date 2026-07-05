@@ -7246,7 +7246,7 @@ figure.table th {
 
 @media (max-width: 768px) {
     .idx-pg .card-box {
-        min-height: 448px;
+        min-height: 436px;
     }
 }
 
