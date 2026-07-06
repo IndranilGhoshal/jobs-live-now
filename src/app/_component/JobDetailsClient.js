@@ -1143,7 +1143,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
             <BreadcrumbSchema
                 title={title}
                 slug={slug}
-                category={slugify(category)}
+                category={category}
             />
             <JobSchema job={job} />
 

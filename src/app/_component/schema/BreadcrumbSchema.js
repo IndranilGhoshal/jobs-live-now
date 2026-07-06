@@ -1,3 +1,5 @@
+import { slugify, slugToTitle } from "@/app/utils/common";
+
 export default function BreadcrumbSchema({ title, slug, category }) {
 
     const schema = {
@@ -13,8 +15,8 @@ export default function BreadcrumbSchema({ title, slug, category }) {
             {
                 "@type":"ListItem",
                 position:2,
-                name:category,
-                item:`https://www.jobslivenow.in/${category}`
+                name:slugToTitle(category),
+                item:`https://www.jobslivenow.in/${slugify(category)}`
             },
             {
                 "@type":"ListItem",
