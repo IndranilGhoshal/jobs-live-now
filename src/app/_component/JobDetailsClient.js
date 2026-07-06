@@ -154,7 +154,6 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
     let officialWebsite = getField("Official Website")?.value || "";
 
     let postname = getField("Post Name")?.value || "";
-    let totalvacancy = getField("Total Vacancy")?.value || "";
     let joblocation = getField("Job Location")?.value || "";
     let applicationmode = getField("Application Mode")?.value || "";
     let salary = getField("Salary")?.value || "";
@@ -510,17 +509,6 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                                 <strong>{postname}</strong>
                             </div>
                         }
-
-                        {
-                            totalvacancy &&
-                            <div className="highlight-item">
-                                <span>
-                                    <Users size={17} />
-                                    Total Vacancy
-                                </span>
-                                <strong>{totalvacancy} Posts</strong>
-                            </div>
-                        }
                         {
                             joblocation &&
                             <div className="highlight-item">
@@ -574,15 +562,6 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                                 </strong>
                             </div>
                         }
-
-                        <div className="highlight-item">
-                            <span>
-                                <CalendarDays size={17} />
-                                Last Date
-                            </span>
-                            <strong>{moment(lastdate).format("MMMM Do YYYY")}</strong>
-                        </div>
-
                     </div>
                 </div>
 
