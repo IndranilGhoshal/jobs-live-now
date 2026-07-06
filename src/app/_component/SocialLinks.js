@@ -1,5 +1,17 @@
 import Link from "next/link";
-import { FaWhatsapp, FaFacebookF, FaYoutube } from "react-icons/fa";
+import {
+    Users,
+    BellRing,
+    BriefcaseBusiness,
+    ClipboardCheck,
+    FileCheck2,
+    GraduationCap,
+    MessageCircle,
+    PlayCircle,
+    ShieldCheck,
+    Rocket,
+} from "lucide-react";
+
 import { fbpagelink, wpgrouplink, ytlink } from "../utils/common-text";
 
 export default function SocialLinks() {
@@ -10,10 +22,12 @@ export default function SocialLinks() {
                 <div className="social-header">
 
                     <span className="social-badge">
-                        👥 Join Our Community
+                        <Users size={16} strokeWidth={2.2} />
+                        Join Our Community
                     </span>
 
                     <h2 className="social-title">
+                        <BellRing size={24} strokeWidth={2.2} />
                         Never Miss a Government Job Update
                     </h2>
 
@@ -33,7 +47,7 @@ export default function SocialLinks() {
                         rel="noopener noreferrer"
                         className="social-btn whatsapp"
                     >
-                        <FaWhatsapp size={20} />
+                        <MessageCircle size={20} strokeWidth={2.2} />
                         <span>Join WhatsApp</span>
                     </Link>
 
@@ -43,7 +57,7 @@ export default function SocialLinks() {
                         rel="noopener noreferrer"
                         className="social-btn facebook"
                     >
-                        <FaFacebookF size={18} />
+                        <Users size={20} strokeWidth={2.2} />
                         <span>Follow Facebook</span>
                     </Link>
 
@@ -53,15 +67,30 @@ export default function SocialLinks() {
                         rel="noopener noreferrer"
                         className="social-btn youtube"
                     >
-                        <FaYoutube size={20} />
+                        <PlayCircle size={20} strokeWidth={2.2} />
                         <span>Subscribe on YouTube</span>
                     </Link>
 
                 </div>
 
-                <p className="social-note">
-                    ✅ Free Updates &nbsp;•&nbsp; 🚀 Fast Notifications &nbsp;•&nbsp; 🔔 Never Miss an Important Update
-                </p>
+                <div className="social-note">
+
+                    <span>
+                        <ShieldCheck size={16} strokeWidth={2.2} />
+                        Free Updates
+                    </span>
+
+                    <span>
+                        <Rocket size={16} strokeWidth={2.2} />
+                        Fast Notifications
+                    </span>
+
+                    <span>
+                        <BellRing size={16} strokeWidth={2.2} />
+                        Never Miss an Important Update
+                    </span>
+
+                </div>
 
             </div>
         </div>

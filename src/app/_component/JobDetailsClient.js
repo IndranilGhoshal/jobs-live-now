@@ -51,12 +51,15 @@ import {
     Link2,
     ClipboardList,
     NotebookText,
-    Rocket
+    Rocket,
+    MessagesSquare,
+    Wrench
 } from "lucide-react";
 import { FaqData } from "./json/FaqData";
 import FeedbackSection from "./FeedbackSection";
 import Comments from "./Comments";
 import { PopularSearches } from "./json/PopularSearches";
+import { fbpagelink, wpgrouplink } from "../utils/common-text";
 
 export default function JobDetailsClient({ job, relatedPost, slug }) {
 
@@ -141,6 +144,25 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
 
     const postdate = temp?.createdAt || "";
 
+    const updatedat = temp?.updatedAt || "";
+
+    const lastdate = getField("Application Date")?.value?.end || "";
+
+
+    let applyLink = getField("Apply Online Link")?.value || "";
+    let notificationPdf = getField("Notification PDF")?.value || "";
+    let officialWebsite = getField("Official Website")?.value || "";
+
+    let postname = getField("Post Name")?.value || "";
+    let totalvacancy = getField("Total Vacancy")?.value || "";
+    let joblocation = getField("Job Location")?.value || "";
+    let applicationmode = getField("Application Mode")?.value || "";
+    let salary = getField("Salary")?.value || "";
+    let recruitmentoverview = getField("Recruitment Overview")?.value || "";
+
+
+
+
     let faqs = [];
 
     if (categoryType === "Results") {
@@ -181,7 +203,15 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                 a.fieldName !== "Qualification Allow" &&
                 a.fieldName !== "Tags" &&
                 a.fieldName !== "Short Information" &&
-                a.fieldName !== "Job Category"
+                a.fieldName !== "Job Category" &&
+                a.fieldName !== "Apply Online Link" &&
+                a.fieldName !== "Notification PDF" &&
+                a.fieldName !== "Official Website" &&
+                a.fieldName !== "Post Name" &&
+                a.fieldName !== "Job Location" &&
+                a.fieldName !== "Application Mode" &&
+                a.fieldName !== "Salary" &&
+                a.fieldName !== "Recruitment Overview"
             ) {
                 finalarray.push(a);
             }
@@ -249,13 +279,6 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
 
     }
 
-    let readingTime = 0
-    let overview = "<p>Engineering Projects (India) Limited (EPI) Recruitment 2026** is a valuable opportunity for experienced engineering professionals seeking a career in a Central Public Sector Enterprise (CPSE). Engineering Projects (India) Limited, a Mini Ratna Government of India enterprise, has released the official notification inviting online applications for **14 Assistant Manager and Senior Manager** posts in Civil, Electrical, and Mechanical disciplines. The recruitment is being conducted on a fixed-term contract basis, offering candidates the chance to work on major infrastructure and construction projects across different parts of India. Candidates with a **B.E./B.Tech degree in the relevant engineering discipline** and the required post-qualification experience are eligible to apply for these managerial positions. Selected candidates will receive an attractive salary package, HRA and other admissible benefits as per EPI rules. Apart from competitive pay, working with EPI provides exposure to large-scale government infrastructure projects, making it an excellent opportunity for engineers looking to strengthen their professional careers. The recruitment process is expected to include **shortlisting of eligible candidates followed by a personal interview**. Therefore, applicants should carefully verify their educational qualifications, experience, age limit and other eligibility conditions before submitting the online application form. Since the application window is limited, eligible candidates are advised to complete the registration process well before the closing date to avoid any last-minute technical issues. On this page, you will find complete information about **EPI Recruitment 2026**, including vacancy details, eligibility criteria, age limit, salary, selection process, important dates, application fee, required documents, and direct links to the official notification and online application form. Candidates should read the official notification thoroughly before applying to ensure they meet all the prescribed requirements and understand the recruitment process clearly.</p>"
-
-    let applyLink = "/"
-    let notificationPdf = "/"
-    let officialWebsite = "/"
-    let views = 0
 
     const GetFaq = () => {
         return (
@@ -363,46 +386,67 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
 
                         <div className="links-grid">
 
-                            <a
-                                href={``}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="link-btn apply"
-                            >
-                                <FilePenLine size={18} strokeWidth={2.2} />
-                                <span>Apply Online</span>
-                            </a>
+                            {
+                                applyLink &&
+                                <a
+                                    href={applyLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="link-btn apply"
+                                >
+                                    <FilePenLine size={18} strokeWidth={2.2} />
+                                    <span>Apply Online</span>
+                                </a>
+                            }
+                            {
+                                notificationPdf &&
+                                <a
+                                    href={notificationPdf}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="link-btn notification"
+                                >
+                                    <FileText size={18} strokeWidth={2.2} />
+                                    <span>Download Notification</span>
+                                </a>
+                            }
 
-                            <a
-                                href={``}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="link-btn notification"
-                            >
-                                <FileText size={18} strokeWidth={2.2} />
-                                <span>Download Notification</span>
-                            </a>
-
-                            <a
-                                href={``}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="link-btn website"
-                            >
-                                <Globe size={18} strokeWidth={2.2} />
-                                <span>Official Website</span>
-                            </a>
+                            {
+                                officialWebsite &&
+                                <a
+                                    href={officialWebsite}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="link-btn website"
+                                >
+                                    <Globe size={18} strokeWidth={2.2} />
+                                    <span>Official Website</span>
+                                </a>
+                            }
 
                             <Link
-                                href="/jobs"
+                                href={`/top-online-form`}
                                 className="link-btn jobs"
                             >
                                 <Briefcase size={18} strokeWidth={2.2} />
                                 <span>Latest Jobs</span>
                             </Link>
 
+                            {
+                                !applyLink &&
+                                <a
+                                    href={`/tools`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="link-btn tools"
+                                >
+                                    <Wrench size={18} strokeWidth={2.2} />
+                                    <span>Online Tools</span>
+                                </a>
+                            }
+
                             <a
-                                href={``}
+                                href={wpgrouplink}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="link-btn whatsapp"
@@ -412,13 +456,13 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                             </a>
 
                             <a
-                                href={``}
+                                href={fbpagelink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="link-btn telegram"
+                                className="link-btn facebook"
                             >
-                                <Send size={18} strokeWidth={2.2} />
-                                <span>Join Telegram</span>
+                                <MessagesSquare size={18} />
+                                <span>Join Facebook</span>
                             </a>
 
                         </div>
@@ -454,138 +498,157 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                                 <Building2 size={17} />
                                 Organization
                             </span>
-                            <strong>Engineering Projects India Ltd</strong>
+                            <strong>{organisation}</strong>
                         </div>
+                        {
+                            postname &&
+                            <div className="highlight-item">
+                                <span>
+                                    <BriefcaseBusiness size={17} />
+                                    Post Name
+                                </span>
+                                <strong>{postname}</strong>
+                            </div>
+                        }
 
-                        <div className="highlight-item">
-                            <span>
-                                <BriefcaseBusiness size={17} />
-                                Post Name
-                            </span>
-                            <strong>Assistant Manager & Senior Manager</strong>
-                        </div>
+                        {
+                            totalvacancy &&
+                            <div className="highlight-item">
+                                <span>
+                                    <Users size={17} />
+                                    Total Vacancy
+                                </span>
+                                <strong>{totalvacancy} Posts</strong>
+                            </div>
+                        }
+                        {
+                            joblocation &&
+                            <div className="highlight-item">
+                                <span>
+                                    <MapPin size={17} />
+                                    Job Location
+                                </span>
+                                <strong>{joblocation}</strong>
+                            </div>
+                        }
 
-                        <div className="highlight-item">
-                            <span>
-                                <Users size={17} />
-                                Total Vacancy
-                            </span>
-                            <strong>14 Posts</strong>
-                        </div>
+                        {
+                            applicationmode &&
 
-                        <div className="highlight-item">
-                            <span>
-                                <MapPin size={17} />
-                                Job Location
-                            </span>
-                            <strong>Across India</strong>
-                        </div>
+                            <div className="highlight-item">
+                                <span>
+                                    <MonitorSmartphone size={17} />
+                                    Application Mode
+                                </span>
+                                <strong>{applicationmode}</strong>
+                            </div>
+                        }
+                        {
+                            salary &&
+                            <div className="highlight-item">
+                                <span>
+                                    <IndianRupee size={17} />
+                                    Salary
+                                </span>
+                                <strong>{salary}</strong>
+                            </div>
+                        }
 
-                        <div className="highlight-item">
-                            <span>
-                                <MonitorSmartphone size={17} />
-                                Application Mode
-                            </span>
-                            <strong>Online</strong>
-                        </div>
+                        {
+                            officialWebsite &&
+                            <div className="highlight-item">
+                                <span>
+                                    <Globe size={17} />
+                                    Official Website
+                                </span>
 
-                        <div className="highlight-item">
-                            <span>
-                                <IndianRupee size={17} />
-                                Salary
-                            </span>
-                            <strong>₹40,000 – ₹2,20,000</strong>
-                        </div>
-
-                        <div className="highlight-item">
-                            <span>
-                                <Globe size={17} />
-                                Official Website
-                            </span>
-
-                            <strong>
-                                <a
-                                    href="https://www.epi.gov.in"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    epi.gov.in
-                                    <ExternalLink size={15} />
-                                </a>
-                            </strong>
-                        </div>
+                                <strong>
+                                    <a
+                                        href={officialWebsite}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {officialWebsite}
+                                        <ExternalLink size={15} />
+                                    </a>
+                                </strong>
+                            </div>
+                        }
 
                         <div className="highlight-item">
                             <span>
                                 <CalendarDays size={17} />
                                 Last Date
                             </span>
-                            <strong>31 July 2026</strong>
+                            <strong>{moment(lastdate).format("MMMM Do YYYY")}</strong>
                         </div>
 
                     </div>
                 </div>
 
-                <div>
-                    {overview && (
-                        <section className="job-introduction">
+                {recruitmentoverview && (
+                    <section className="job-introduction">
 
-                            <div className="section-heading">
-                                <NotebookText size={22} strokeWidth={2.2} />
-                                <h2>Recruitment Overview</h2>
+                        <div className="section-heading">
+                            <NotebookText size={22} strokeWidth={2.2} />
+                            <h2>Recruitment Overview</h2>
+                        </div>
+
+                        <div
+                            className="overview-content"
+                            dangerouslySetInnerHTML={{
+                                __html: recruitmentoverview
+                            }}
+                        />
+
+                    </section>
+                )}
+
+                {
+                    applyLink || notificationPdf || officialWebsite ?
+                        <div className="quick-action-box">
+                            <h2><Rocket size={24} strokeWidth={2.2} /> Quick Links</h2>
+
+                            <div className="action-buttons">
+
+                                {applyLink && (
+                                    <a
+                                        href={applyLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer nofollow"
+                                        className="apply-btn"
+                                    >
+                                        Apply Online
+                                    </a>
+                                )}
+
+                                {notificationPdf && (
+                                    <a
+                                        href={notificationPdf}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="apply-btn"
+                                    >
+                                        Download Notification
+                                    </a>
+                                )}
+
+                                {officialWebsite && (
+                                    <a
+                                        href={officialWebsite}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="apply-btn"
+                                    >
+                                        Official Website
+                                    </a>
+                                )}
+
                             </div>
-
-                            <div
-                                className="overview-content"
-                                dangerouslySetInnerHTML={{
-                                    __html: overview
-                                }}
-                            />
-
-                        </section>
-                    )}
-                </div>
-
-                <div className="quick-action-box">
-                    <h2><Rocket size={24} strokeWidth={2.2} /> Quick Links</h2>
-
-                    <div className="action-buttons">
-
-                        {applyLink && (
-                            <a
-                                href={applyLink}
-                                target="_blank"
-                                rel="noopener noreferrer nofollow"
-                                className="apply-btn"
-                            >
-                                Apply Online
-                            </a>
-                        )}
-
-                        {notificationPdf && (
-                            <a
-                                href={notificationPdf}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="apply-btn"
-                            >
-                                Download Notification
-                            </a>
-                        )}
-
-                        {officialWebsite && (
-                            <a
-                                href={officialWebsite}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="apply-btn"
-                            >
-                                Official Website
-                            </a>
-                        )}
-
-                    </div>
-                </div>
+                        </div>
+                        :
+                        <></>
+                }
 
                 {/* ================= SHORT INFO ================= */}
                 <div className="short-info">
@@ -742,7 +805,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
 
                                         <div className="discover-content">
 
-                                            <h4 className="single-line-ellipsis">
+                                            <h4 className="single-line-ellipsiss">
                                                 {item.name}
                                             </h4>
                                             <p>
@@ -835,7 +898,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                         <span>
                             <Calendar size={16} /> Last Updated
                         </span>
-                        <strong>{moment(postdate).format("MMMM Do YYYY")}</strong>
+                        <strong>{moment(updatedat).format("MMMM Do YYYY")}</strong>
                     </div>
 
                 </div>
@@ -913,7 +976,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                             <span>
                                 <Calendar size={16} /> Last Updated
                             </span>
-                            <strong>26 June 2026</strong>
+                            <strong>{moment(updatedat).format("MMMM Do YYYY")}</strong>
                         </div>
 
                     </div>
@@ -969,7 +1032,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                             </span>
 
                             <strong>
-                                <a href="/contact">
+                                <a href={`/contact-us`}>
                                     Visit Contact Page <ArrowRight size={15} />
                                 </a>
                             </strong>
@@ -1005,29 +1068,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                             Updated
                         </span>
 
-                        <strong>{moment(postdate).format("MMMM Do YYYY")}</strong>
-
-                    </div>
-
-                    <div className="info-row">
-
-                        <span>
-                            <Eye size={16} />
-                            Views
-                        </span>
-
-                        <strong>{job.views || 0}</strong>
-
-                    </div>
-
-                    <div className="info-row">
-
-                        <span>
-                            <Clock3 size={16} />
-                            Reading Time
-                        </span>
-
-                        <strong>{readingTime} min</strong>
+                        <strong>{moment(updatedat).format("MMMM Do YYYY")}</strong>
 
                     </div>
 

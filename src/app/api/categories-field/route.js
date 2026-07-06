@@ -21,6 +21,14 @@ export async function GET(request) {
             { fieldName: "Mode of Selection", fieldType: "texteditor", value: "", isMandotary: true, icon: "📝", placeholder: "Enter Mode of Selection", selectvalue: [] },
             { fieldName: "Important Links", fieldType: "texteditor", value: "", isMandotary: true, icon: "🔗", placeholder: "Enter Important Links", selectvalue: [] },
             { fieldName: "Important Question", fieldType: "texteditor", value: "", isMandotary: true, icon: "❓", placeholder: "Enter Important Question", selectvalue: [] },
+            { fieldName: "Apply Online Link", fieldType: "text", value: "", isMandotary: false, icon: "📝", placeholder: "Apply Online Link", selectvalue: [] },
+            { fieldName: "Notification PDF", fieldType: "text", value: "", isMandotary: true, icon: "📄", placeholder: "Notification PDF Link", selectvalue: [] },
+            { fieldName: "Official Website", fieldType: "text", value: "", isMandotary: true, icon: "🌐", placeholder: "Official Website", selectvalue: [] },
+            { fieldName: "Post Name", fieldType: "text", value: "", isMandotary: true, icon: "💼", placeholder: "Post Name", selectvalue: [] },
+            { fieldName: "Job Location", fieldType: "text", value: "", isMandotary: true, icon: "📍", placeholder: "Job Location", selectvalue: [] },
+            { fieldName: "Application Mode", fieldType: "text", value: "", isMandotary: true, icon: "🖥️", placeholder: "Application Mode", selectvalue: [] },
+            { fieldName: "Salary", fieldType: "text", value: "", isMandotary: true, icon: "💰", placeholder: "Salary", selectvalue: [] },
+            { fieldName: "Recruitment Overview", fieldType: "texteditor", value: "", isMandotary: true, icon: "📋", placeholder: "Enter Recruitment Overview", selectvalue: [] }
         ];
 
         return new Response(

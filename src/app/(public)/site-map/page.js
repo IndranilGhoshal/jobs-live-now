@@ -49,6 +49,10 @@ export default function Page() {
                 <li><Link href="/privacy-policy">Privacy Policy</Link></li>
                 <li><Link href="/terms-and-conditions">Terms & Conditions</Link></li>
                 <li><Link href="/disclaimer">Disclaimer</Link></li>
+                <li><Link href={`/editorial-policy`}>Editorial Policy</Link></li>
+                <li><Link href={`/fact-check-policy`}>Fact Check Policy</Link></li>
+                <li><Link href={`/dmca-policy`}>DMCA Policy</Link></li>
+                <li><Link href={`/cookie-policy`}>Cookie Policy</Link></li>
                 <li><Link href="/site-map">Site Map</Link></li>
               </ul>
 

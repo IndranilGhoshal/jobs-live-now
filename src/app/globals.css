@@ -731,7 +731,38 @@ html.dark .discover-job-card:hover {
     box-shadow: 0 10px 25px #2563eb26;
 }
 
-
+html.dark .pdf-img .seo-content,
+html.dark .pdf-img .pdf-img-container,
+html.dark .img-name .seo-content,
+html.dark .img-name .photo-tool-container,
+html.dark .photo-sign .seo-content,
+html.dark .photo-sign .joiner-card,
+html.dark .type-les .seo-content,
+html.dark .type-les .type-card,
+html.dark .img-pdf .seo-content,
+html.dark .img-pdf .img-pdf-card,
+html.dark .bio-dat .resume-form-card,
+html.dark .img-resiz .seo-content, 
+html.dark .bio-dat .seo-content,
+html.dark .img-resiz .image-resizer-card,
+html.dark .age-cal .age-card ,
+html.dark .age-cal .seo-content,
+html.dark .tools .seo-content,
+html.dark .tools .tool-card,
+html.dark .txt-cont .card .card-body,
+html.dark .txt-cont .card .card-body .btn-primary,
+html.dark .article-info-card,
+html.dark .help-card,
+html.dark .help-support,
+html.dark .review-info div,
+html.dark .editorial-card,
+html.dark .editorial-section,
+html.dark .author-card,
+html.dark .author-box,
+html.dark .comments-section .comment-card .comment-header span,
+html.dark .comments-section .comment-card,
+html.dark .comments-section .comment-form button,
+html.dark .comments-section,
 html.dark .feedback-success,
 html.dark .feedback-already,
 html.dark .feedback-btn span,
@@ -798,6 +829,53 @@ html.dark .dtl-tlt-des{
     color: #fff;
 }
 
+html.dark .discover-more .discover-content .single-line-ellipsiss,
+html.dark .pdf-img .seo-content p, 
+html.dark .pdf-img .seo-content li,
+html.dark .pdf-img .seo-content h2,
+html.dark .pdf-img .pdf-img-container label,
+html.dark .pdf-img .tool-page h1,
+html.dark .img-name .seo-content p,
+html.dark .img-name .seo-content h2,
+html.dark .img-name .preview-box h3,
+html.dark .img-name .photo-tool-container label,
+html.dark .img-name .tool-page h1,
+html.dark .photo-sign .seo-content p,
+html.dark .photo-sign .seo-content h2,
+html.dark .photo-sign .preview-title,
+html.dark .photo-sign .joiner-card label,
+html.dark .type-les .seo-content p, 
+html.dark .type-les .seo-content li,
+html.dark .type-les .seo-content h2,
+html.dark .type-les .tool-page h1,
+html.dark .img-pdf .seo-content p, 
+html.dark .img-pdf .seo-content li,
+html.dark .img-pdf .seo-content h2,
+html.dark .img-pdf .tool-page h1,
+html.dark .bio-dat .seo-content p, 
+html.dark .bio-dat .seo-content li,
+html.dark .bio-dat .seo-content h2,
+html.dark .bio-dat .template-selector h4,
+html.dark .bio-dat .add-more .div-numb,
+html.dark .bio-dat .resume-section-title,
+html.dark .bio-dat .tool-page h1,
+html.dark .img-resiz .seo-content p, 
+html.dark .img-resiz .seo-content li,
+html.dark .img-resiz .seo-content h2,
+html.dark .img-resiz .tool-page h1,
+html.dark .age-cal .tool-page h1,
+html.dark .age-cal .seo-content h2,
+html.dark .age-cal .seo-content p, 
+html.dark .age-cal .seo-content li,
+html.dark .tools .seo-content p, 
+html.dark .tools .seo-content li,
+html.dark .tools .seo-content h2,
+html.dark .tools .tool-card h2,
+html.dark .tools .tools-page h1,
+html.dark .help-card strong,
+html.dark .author-item strong,
+html.dark .comment-card:hover p,
+html.dark .comment-card:hover,
 html.dark .feedback-success svg,
 html.dark .feedback-already svg,
 html.dark .feedback-btn:hover svg,
@@ -945,6 +1023,19 @@ html.dark .job-dttls .faq-item[open] {
     box-shadow: 0 8px 18px #2563eb14;
 }
 
+html.dark .comments-section .no-comment,
 html.dark .job-dttls .faq-item summary:after{
     color: #fff;
+}
+
+
+html.dark .comment-card:before{
+    background: #fff;
+}
+
+html.dark .author-avatar,
+html.dark .comment-header .avatar{
+    background: #1f2937 !important;
+     border: 1px solid #fff;
+     color: #fff;
 }
