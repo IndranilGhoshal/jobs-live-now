@@ -1,25 +1,25 @@
 import React from 'react'
 
-export default function JobSchema({ job }) {
+export default function JobSchema({ title, postdate, lastdate, organisation, officialWebsite, slug, salary }) {
 
     const schema = {
         "@context": "https://schema.org",
         "@type": "JobPosting",
 
-        title: job.title,
+        title: title,
 
-        description: job.metaDescription,
+        description: `${title} - Apply online for latest recruitment notification. Check eligibility, vacancy details, important dates and application process.`,
 
-        datePosted: job.datePosted,
+        datePosted: postdate,
 
-        validThrough: job.lastDate,
+        validThrough: lastdate,
 
         employmentType: "FULL_TIME",
 
         hiringOrganization: {
             "@type": "Organization",
-            name: job.organization,
-            sameAs: job.organizationWebsite
+            name: organisation,
+            sameAs: officialWebsite
         },
 
         jobLocation: {
@@ -35,11 +35,11 @@ export default function JobSchema({ job }) {
             currency: "INR",
             value: {
                 "@type": "QuantitativeValue",
-                value: job.salary || "As Per Rules"
+                value: salary || "As Per Rules"
             }
         },
 
-        url: `https://www.jobslivenow.in/${job.slug}`
+        url: `https://www.jobslivenow.in/${slug}`
     };
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ArticleSchema({ job }) {
+export default function ArticleSchema({ title, postdate, updatedat, slug }) {
 
     const schema = {
 
@@ -8,11 +8,11 @@ export default function ArticleSchema({ job }) {
 
         "@type": "Article",
 
-        headline: job.title,
+        headline: title,
 
-        datePublished: job.datePosted,
+        datePublished: postdate,
 
-        dateModified: job.updatedAt,
+        dateModified: updatedat,
 
         author: {
             "@type": "Organization",
@@ -35,7 +35,7 @@ export default function ArticleSchema({ job }) {
 
         },
 
-        mainEntityOfPage: `https://www.jobslivenow.in/${job.slug}`
+        mainEntityOfPage: `https://www.jobslivenow.in/${slug}`
 
     };
 

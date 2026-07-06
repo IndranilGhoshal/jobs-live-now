@@ -1145,9 +1145,23 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                 slug={slug}
                 category={category}
             />
-            <JobSchema job={job} />
 
-            <ArticleSchema job={job} />
+            <JobSchema
+                title={title}
+                postdate={postdate}
+                lastdate={lastdate}
+                organisation={organisation}
+                officialWebsite={officialWebsite}
+                slug={slug}
+                salary={salary}
+            />
+
+            <ArticleSchema
+                title={title}
+                postdate={postdate}
+                slug={slug}
+                updatedat={updatedat}
+            />
 
             <FAQSchema faqs={faqs} />
         </>
