@@ -1873,6 +1873,11 @@ h2.top-sub-bar {
     transition: .3s;
 }
 
+.link-btn svg {
+    flex-shrink: 0;
+    margin-right: 5px;
+}
+
 .link-btn:hover {
     transform: translateY(-3px);
     color: #fff;
@@ -2205,29 +2210,47 @@ h2.top-sub-bar {
 }
 
 .job-introduction {
+    margin: 30px 0;
+    padding: 24px;
 
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
-    padding: 28px;
-    margin: 30px 0;
-
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
-.job-introduction h2 {
+.section-heading {
+    display: flex;
 
-    font-size: 30px;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 10px;
 
-}
-
-.job-introduction p {
-
-    line-height: 1.9;
     margin-bottom: 18px;
-    color: #374151;
-    font-size: 17px;
+    padding-bottom: 12px;
 
+    border-bottom: 2px solid #eff6ff;
+}
+
+.section-heading svg {
+    color: #000;
+    flex-shrink: 0;
+}
+
+.section-heading h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.overview-content {
+    text-align: justify;
+    color: #374151;
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+.overview-content p:last-child {
+    margin-bottom: 0;
 }
 
 .quick-action-box {
@@ -2426,56 +2449,98 @@ h2.top-sub-bar {
     flex-shrink: 0;
 }
 
-.quick-facts-two {
-    display: grid;
-    grid-template-columns: 1fr;;
-    flex-wrap: wrap;
+.job-tags {
+    display: flex;
+    align-items: flex-start;
     gap: 10px;
-    margin-top: 15px;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+    padding: 16px 18px;
+
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
 }
 
-.quick-facts-two>div {
+.job-tags-label {
+    padding: 7px;
     display: flex;
     align-items: center;
-    justify-content: center;
-
     gap: 6px;
-    padding: 8px 14px;
 
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-
-    font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     color: #374151;
-
-    text-align: center;
+    white-space: nowrap;
 }
 
-.quick-facts-two span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 6px;
-    padding: 8px 14px;
-
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-    border-radius: 30px;
-
-    font-size: 14px;
-    font-weight: 600;
-    color: #374151;
-
-    text-align: center;
-}
-
-.quick-facts-two span svg {
-    width: 16px;
-    height: 16px;
+.job-tags-label svg {
     flex-shrink: 0;
+    position: relative;
+    top: -1px; /* বা 1px, দেখে adjust করবে */
+}
+
+.job-tags-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    line-height: 1.8;
+}
+
+.job-tag {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 12px;
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all .25s ease;
+    cursor: pointer;
+}
+
+.job-tag:hover {
+    filter: brightness(0.96);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+/* Blue */
+.color-1 {
+    color: #1d4ed8;
+    background: #dbeafe;
+}
+
+/* Green */
+.color-2 {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+/* Orange */
+.color-3 {
+    color: #c2410c;
+    background: #ffedd5;
+}
+
+/* Purple */
+.color-4 {
+    color: #7e22ce;
+    background: #f3e8ff;
+}
+
+/* Red */
+.color-5 {
+    color: #b91c1c;
+    background: #fee2e2;
+}
+
+/* Cyan */
+.color-6 {
+    color: #0f766e;
+    background: #ccfbf1;
 }
 
 .discover-more h3 {
@@ -3535,9 +3600,40 @@ h2.top-sub-bar {
 }
 
 
+.highlight-item span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.highlight-item span svg {
+    color: #6b7280;
+    flex-shrink: 0;
+}
+
+.highlight-item strong a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.highlight-item strong a:hover {
+    text-decoration: underline;
+}
+
+
+
 
 .job-dttls .faq-section {
-    margin: 50px 0;
+    margin: 25px 0;
     padding: 35px;
     background: #fff;
     border: 1px solid #e5e7eb;
@@ -3731,9 +3827,10 @@ h2.top-sub-bar {
     width: 100%;
 }
 
-.job-dttls .dtl-tlt.my-2 {
+.job-dttls .dtl-tlt {
     text-align: center;
     font-size: 20px;
+    margin-top: 25px;
 }
 
 .dtl-tlt-txt {
@@ -3758,6 +3855,7 @@ h2.top-sub-bar {
 
 .short-info {
     text-align: justify;
+    margin-top: 25px;
 }
 
 .job-dttls .notfound-container {
@@ -4054,8 +4152,13 @@ h2.top-sub-bar {
     opacity: 0.8;
 }
 
+.job-dttls .card-box{
+    margin-top: 35px;
+    padding: 20px !important;
+}
+
 .job-dttls .card-box li {
-    padding: 10px;
+    padding: 20px;
     border-bottom: none;
     font-size: 16px;
     transition: 0.3s;

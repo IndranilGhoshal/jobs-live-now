@@ -709,6 +709,45 @@ html.dark .faq-section{
     padding: 10px;
     border-radius: 10px;
 }
+
+
+html.dark .job-dttls.main .feedback-btn{
+    box-shadow: none;
+    color: #fff;
+    border: 1px solid #fff;
+    background: #1f2937 !important;
+}
+
+
+html.dark .discover-thumb{
+    background: #1f2937 !important;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+html.dark .discover-job-card:hover {
+    border-color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px #2563eb26;
+}
+
+
+html.dark .feedback-success,
+html.dark .feedback-already,
+html.dark .feedback-btn span,
+html.dark .job-dttls.main .user-feedback,
+html.dark .job-dttls.main .job-tag,
+html.dark .job-dttls.main .job-tags,
+html.dark .job-dttls.main .card-box,
+html.dark .job-dttls.main .card-box .red-head,
+html.dark .quick-action-box .action-buttons a,
+html.dark .quick-action-box,
+html.dark .job-introduction,
+html.dark .highlight-item,
+html.dark .recruitment-highlights,
+html.dark .quick-facts span,
+html.dark .important-links .links-grid a,
+html.dark .important-links,
 html.dark .about-category,
 html.dark .related-post-links a,
 html.dark .popular-searches,
@@ -751,6 +790,32 @@ html.dark .hero-buttons a {
     background: #1f2937 !important;
 }
 
+
+
+html.dark .dtl-tlt-txt,
+html.dark .dtl-tlt-des{
+    text-decoration:underline white;
+    color: #fff;
+}
+
+html.dark .feedback-success svg,
+html.dark .feedback-already svg,
+html.dark .feedback-btn:hover svg,
+html.dark .feedback-btn strong,
+html.dark .feedback-btn svg,
+html.dark .job-dttls .faq-section h2,
+html.dark .job-dttls.main .job-tags-label svg,
+html.dark .job-dttls.main .card-box .card-box-body li,
+html.dark .section-heading svg,
+html.dark .highlight-item span svg,
+html.dark .highlight-item strong,
+html.dark h1.job-main-title{
+    color: #fff;
+}
+
+
+html.dark .discover-job-card,
+html.dark .discover-more,
 html.dark .editorial-points li svg,
 html.dark .trust-badges.caty span svg,
 html.dark .job-dtl .card-box a,
@@ -826,6 +891,7 @@ html.dark .card-box li:hover{
     background: #1f2937 !important;
 }
 
+html.dark .recruitment-highlights h2:after,
 html.dark .about-category h2:after,
 html.dark .job-card:before{
     background: #fff !important;
@@ -853,4 +919,32 @@ html.dark .apply-step span{
     background: #1f2937 !important;
     color: #fff;
     border: 1px solid #fff;
+}
+
+
+html.dark figure.table tr:first-child td{
+    background: #1f2937 !important;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+html.dark figure.table td{
+    background: #1f2937 !important;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+html.dark .job-dttls .faq-item summary,
+html.dark .job-dttls .faq-item p{
+    background: #1f2937 !important;
+    color: #fff;
+}
+
+html.dark .job-dttls .faq-item[open] {
+    border-color: #fff;
+    box-shadow: 0 8px 18px #2563eb14;
+}
+
+html.dark .job-dttls .faq-item summary:after{
+    color: #fff;
 }

@@ -38,7 +38,20 @@ import {
     RefreshCw,
     Eye,
     FolderOpen,
-    ArrowRight
+    ArrowRight,
+    FilePenLine,
+    Briefcase,
+    Send,
+    Building2,
+    Users,
+    MapPin,
+    MonitorSmartphone,
+    IndianRupee,
+    ExternalLink,
+    Link2,
+    ClipboardList,
+    NotebookText,
+    Rocket
 } from "lucide-react";
 import { FaqData } from "./json/FaqData";
 import FeedbackSection from "./FeedbackSection";
@@ -346,7 +359,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
 
                 <div>
                     <div className="important-links">
-                        <h2>🔗 Important Links</h2>
+                        <h2><Link2 size={24} strokeWidth={2.2} /> Important Links</h2>
 
                         <div className="links-grid">
 
@@ -356,7 +369,8 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                                 rel="noopener noreferrer"
                                 className="link-btn apply"
                             >
-                                📝 Apply Online
+                                <FilePenLine size={18} strokeWidth={2.2} />
+                                <span>Apply Online</span>
                             </a>
 
                             <a
@@ -365,7 +379,8 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                                 rel="noopener noreferrer"
                                 className="link-btn notification"
                             >
-                                📄 Download Notification
+                                <FileText size={18} strokeWidth={2.2} />
+                                <span>Download Notification</span>
                             </a>
 
                             <a
@@ -374,30 +389,36 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                                 rel="noopener noreferrer"
                                 className="link-btn website"
                             >
-                                🌐 Official Website
+                                <Globe size={18} strokeWidth={2.2} />
+                                <span>Official Website</span>
                             </a>
 
                             <Link
                                 href="/jobs"
                                 className="link-btn jobs"
                             >
-                                💼 Latest Jobs
+                                <Briefcase size={18} strokeWidth={2.2} />
+                                <span>Latest Jobs</span>
                             </Link>
 
                             <a
                                 href={``}
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="link-btn whatsapp"
                             >
-                                💬 Join WhatsApp
+                                <MessageCircle size={18} strokeWidth={2.2} />
+                                <span>Join WhatsApp</span>
                             </a>
 
                             <a
                                 href={``}
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="link-btn telegram"
                             >
-                                ✈️ Join Telegram
+                                <Send size={18} strokeWidth={2.2} />
+                                <span>Join Telegram</span>
                             </a>
 
                         </div>
@@ -423,57 +444,64 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
 
                 </div>
 
-                <div className="quick-facts-two">
-                    <div>
-                        <Tags size={16} strokeWidth={2} />
-                        <b>Tags:</b>
-                        {tags &&
-                            tags.map((tag, i) => (
-                                <span key={i}>
-                                    {tag.label}
-                                    {i !== tags.length - 1 && ", "}
-                                </span>
-                            ))}
-                    </div>
-                </div>
-
                 <div className="recruitment-highlights">
-                    <h2>📌 Recruitment Highlights</h2>
+                    <h2><ClipboardList size={24} strokeWidth={2.2} /> Recruitment Highlights</h2>
 
                     <div className="highlights-grid">
 
                         <div className="highlight-item">
-                            <span>🏢 Organization</span>
+                            <span>
+                                <Building2 size={17} />
+                                Organization
+                            </span>
                             <strong>Engineering Projects India Ltd</strong>
                         </div>
 
                         <div className="highlight-item">
-                            <span>💼 Post Name</span>
+                            <span>
+                                <BriefcaseBusiness size={17} />
+                                Post Name
+                            </span>
                             <strong>Assistant Manager & Senior Manager</strong>
                         </div>
 
                         <div className="highlight-item">
-                            <span>👥 Total Vacancy</span>
+                            <span>
+                                <Users size={17} />
+                                Total Vacancy
+                            </span>
                             <strong>14 Posts</strong>
                         </div>
 
                         <div className="highlight-item">
-                            <span>📍 Job Location</span>
+                            <span>
+                                <MapPin size={17} />
+                                Job Location
+                            </span>
                             <strong>Across India</strong>
                         </div>
 
                         <div className="highlight-item">
-                            <span>🖥 Application Mode</span>
+                            <span>
+                                <MonitorSmartphone size={17} />
+                                Application Mode
+                            </span>
                             <strong>Online</strong>
                         </div>
 
                         <div className="highlight-item">
-                            <span>💰 Salary</span>
+                            <span>
+                                <IndianRupee size={17} />
+                                Salary
+                            </span>
                             <strong>₹40,000 – ₹2,20,000</strong>
                         </div>
 
                         <div className="highlight-item">
-                            <span>🌐 Official Website</span>
+                            <span>
+                                <Globe size={17} />
+                                Official Website
+                            </span>
 
                             <strong>
                                 <a
@@ -481,13 +509,17 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    epi.gov.in ↗
+                                    epi.gov.in
+                                    <ExternalLink size={15} />
                                 </a>
                             </strong>
                         </div>
 
                         <div className="highlight-item">
-                            <span>📅 Last Date</span>
+                            <span>
+                                <CalendarDays size={17} />
+                                Last Date
+                            </span>
                             <strong>31 July 2026</strong>
                         </div>
 
@@ -498,9 +530,13 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                     {overview && (
                         <section className="job-introduction">
 
-                            <h2>Recruitment Overview</h2>
+                            <div className="section-heading">
+                                <NotebookText size={22} strokeWidth={2.2} />
+                                <h2>Recruitment Overview</h2>
+                            </div>
 
                             <div
+                                className="overview-content"
                                 dangerouslySetInnerHTML={{
                                     __html: overview
                                 }}
@@ -511,7 +547,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                 </div>
 
                 <div className="quick-action-box">
-                    <h2>🚀 Quick Links</h2>
+                    <h2><Rocket size={24} strokeWidth={2.2} /> Quick Links</h2>
 
                     <div className="action-buttons">
 
@@ -552,7 +588,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                 </div>
 
                 {/* ================= SHORT INFO ================= */}
-                <div className="my-2 short-info">
+                <div className="short-info">
 
                     <b>Short Information: </b>
 
@@ -565,7 +601,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                 </div>
 
                 {/* ================= TITLE BOX ================= */}
-                <div className="dtl-tlt my-2">
+                <div className="dtl-tlt">
 
                     <div className="dtl-tlt-txt">
                         {organisation}
@@ -592,6 +628,7 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                             </div>
 
                             <div
+                                className="card-box-body"
                                 dangerouslySetInnerHTML={{
                                     __html: item.value,
                                 }}
@@ -609,6 +646,24 @@ export default function JobDetailsClient({ job, relatedPost, slug }) {
                         public notifications. Please verify details from official website
                         before applying.
                     </p>
+                </div>
+
+                <div className="job-tags">
+                    <div className="job-tags-label">
+                        <Tags size={18} />
+                        <span>Tags:</span>
+                    </div>
+
+                    <div className="job-tags-content">
+                        {tags?.map((tag, i) => (
+                            <span
+                                key={i}
+                                className={`job-tag color-${(i % 6) + 1}`}
+                            >
+                                #{tag.label}
+                            </span>
+                        ))}
+                    </div>
                 </div>
 
                 <GetFaq />
