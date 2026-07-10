@@ -139,6 +139,9 @@ export const metadata = {
   formatDetection: {
     telephone: false,
   },
+  other: {
+    "article:publisher": "https://www.jobslivenow.in",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -189,6 +192,8 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
+
+        <meta name="msvalidate.01" content="CDF4E39FCD41F5B0FACD2A57E8F95095" />
 
         <link
           rel="preconnect"
