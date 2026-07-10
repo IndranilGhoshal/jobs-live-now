@@ -1,0 +1,14 @@
+# Jobs Live Now
+
+Website: https://www.jobslivenow.in
+
+Title: Jobs Live Now
+
+Description:
+Jobs Live Now provides the latest Government Job Notifications, Admit Cards, Results, Answer Keys, Syllabus, Admissions, and Exam Updates in India.
+
+Sitemap:
+https://www.jobslivenow.in/sitemap.xml
+
+Robots:
+https://www.jobslivenow.in/robots.txt
