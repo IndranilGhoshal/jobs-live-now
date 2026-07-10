@@ -186,7 +186,7 @@ export async function POST(req) {
                 category: "Jobs",
                 status: "0",
             })
-                .select("slug updatedAt")
+                .select("name slug createdAt fields updatedAt")
                 .sort({ updatedAt: -1 })
                 .lean();
             if (jobs) {
