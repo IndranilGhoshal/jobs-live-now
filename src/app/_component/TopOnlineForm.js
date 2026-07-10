@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import StatCounter from './StatCounter';
 import { PopularSearches } from './json/PopularSearches';
+import TopOnlineFormBreadcrumbSchema from './schema/TopOnlineFormBreadcrumbSchema';
 
 const filters = [
     { name: "All", value: "all" },
@@ -974,6 +975,8 @@ export default function TopOnlineForm() {
                 </div>
 
                 <SocialLinks />
+
+                <TopOnlineFormBreadcrumbSchema />
 
             </div>
         </>

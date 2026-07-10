@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
             `Get latest ${title} pass jobs updates, notifications, admit cards, results and important government exam information.`,
 
         alternates: {
-            canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/public-qualification/${slug}`,
+            canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/qualification/${slug}`,
         },
 
         robots: {

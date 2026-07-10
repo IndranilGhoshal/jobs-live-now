@@ -30,6 +30,7 @@ import {
 import StatCounter from './StatCounter';
 import HeroSearch from './HeroSearch';
 import { PopularSearches } from './json/PopularSearches';
+import CategoryBreadcrumbSchema from './schema/CategoryBreadcrumbSchema';
 
 
 
@@ -470,6 +471,8 @@ export default function Category({ slug }) {
             </div>
 
             <SocialLinks />
+
+            <CategoryBreadcrumbSchema category={slug} />
 
         </div >
     )

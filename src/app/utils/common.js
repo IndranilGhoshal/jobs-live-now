@@ -87,3 +87,14 @@ export const getQualificationTitle = (slug) => {
         ?.replace(/\b\w/g, (c) => c.toUpperCase());
 
 };
+
+export function htmlToText(htmlString) {
+  if (!htmlString) return '';
+  // Removes HTML tags and replaces common entities
+  return htmlString
+    .replace(/<[^>]*>/g, '') 
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}

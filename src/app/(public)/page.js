@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { title, url, year } from "../utils/common-text";
+import { title, year } from "../utils/common-text";
 import { PopularSearches } from "../_component/json/PopularSearches";
 import HeroSearch from "../_component/HeroSearch";
 import {
@@ -57,7 +57,7 @@ export const metadata = {
     ],
 
     alternates: {
-        canonical: url,
+        canonical: `${process.env.NEXT_PUBLIC_BASE_URL}`,
     },
 
     openGraph: {
@@ -66,7 +66,7 @@ export const metadata = {
 
         description: "Latest Government Result, Government Jobs, Online Forms and Admit Cards.",
 
-        url: url,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
 
         siteName: title,
 

@@ -1,0 +1,25 @@
+Website:
+https://www.jobslivenow.in
+
+Title:
+Jobs Live Now
+
+Description:
+Latest Government Jobs, Results, Admit Cards, Answer Keys, Admissions and Syllabus.
+
+Primary Topics
+
+Government Jobs
+Results
+Admit Cards
+Answer Keys
+Admissions
+Syllabus
+Recruitment
+Exams
+
+Sitemap
+https://www.jobslivenow.in/sitemap.xml
+
+RSS
+https://www.jobslivenow.in/feed.xml

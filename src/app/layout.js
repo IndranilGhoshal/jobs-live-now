@@ -86,6 +86,10 @@ export const metadata = {
 
   alternates: {
     canonical: "https://www.jobslivenow.in",
+    types: {
+      "application/rss+xml":
+        "https://www.jobslivenow.in/feed.xml",
+    },
   },
 
   openGraph: {
@@ -158,6 +162,11 @@ export default function RootLayout({ children }) {
           url: "https://www.jobslivenow.in/logo.png"
         },
         image: "https://www.jobslivenow.in/logo.png",
+        sameAs: [
+          "https://www.facebook.com/profile.php?id=61590339551941",
+          "https://chat.whatsapp.com/Id17tCunMrN5VX4tVxCUlN?s=cl&p=i&mlu=0&amv=0",
+          "https://www.youtube.com/channel/UCb1QFGBxdIFr3VYH8dZCamg"
+        ]
       },
       {
         "@type": "WebSite",
@@ -167,6 +176,11 @@ export default function RootLayout({ children }) {
         publisher: {
           "@id": "https://www.jobslivenow.in/#organization",
         },
+        potentialAction: {
+          "@type": "SearchAction",
+          "target": "https://www.jobslivenow.in/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "WebPage",

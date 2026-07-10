@@ -1,0 +1,32 @@
+import React from 'react'
+
+export default function TopOnlineFormBreadcrumbSchema() {
+
+    const schema = {
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            itemListElement:[
+                {
+                    "@type":"ListItem",
+                    position:1,
+                    name:"Home",
+                    item:"https://www.jobslivenow.in"
+                },
+                {
+                    "@type":"ListItem",
+                    position:2,
+                    name:"Top Online Form",
+                    item:`https://www.jobslivenow.in/top-online-form`
+                }
+            ]
+        };
+    
+        return (
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html:JSON.stringify(schema)
+                }}
+            />
+        );
+}

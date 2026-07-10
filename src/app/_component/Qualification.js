@@ -17,6 +17,7 @@ import { Award, BadgeCheck, BookOpenCheck, BriefcaseBusiness, CalendarDays, Circ
 import StatCounter from './StatCounter';
 import HeroSearch from './HeroSearch';
 import { PopularSearches } from './json/PopularSearches';
+import QualificationBreadcrumbSchema from './schema/QualificationBreadcrumbSchema';
 
 export default function Qualification({ slug }) {
 
@@ -508,6 +509,8 @@ export default function Qualification({ slug }) {
             </div>
 
             <SocialLinks />
+
+            <QualificationBreadcrumbSchema category={slug} />
 
         </div >
     )

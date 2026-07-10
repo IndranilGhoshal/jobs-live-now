@@ -18,6 +18,7 @@ import { BadgeCheck, Landmark, Award, BookOpenCheck, BriefcaseBusiness, Calendar
 import HeroSearch from './HeroSearch';
 import StatCounter from './StatCounter';
 import { PopularSearches } from './json/PopularSearches';
+import RecruitmentBreadcrumbSchema from './schema/RecruitmentBreadcrumbSchema';
 
 export default function Recruitment({ slug }) {
 
@@ -511,6 +512,8 @@ export default function Recruitment({ slug }) {
             </div>
 
             <SocialLinks />
+
+            <RecruitmentBreadcrumbSchema category={slug} />
 
         </div >
     )
