@@ -208,6 +208,7 @@ export default function RootLayout({ children }) {
       <head>
 
         <meta name="msvalidate.01" content="CDF4E39FCD41F5B0FACD2A57E8F95095" />
+        <meta name="p:domain_verify" content="aacb6fb6002ce79e9c23ba81e19dd780"/>
 
         <link
           rel="preconnect"

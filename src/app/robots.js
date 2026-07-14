@@ -42,5 +42,9 @@ export default function robots() {
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
+    other: {
+      Feed: `${baseUrl}/feed.xml`,
+    },
   };
 }
